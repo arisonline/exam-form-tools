@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Tool Name - Free Online Tool</title>
+
+<meta name="description"
+content="Use this free online tool to resize, compress or convert images easily.">
+
+<link rel="canonical"
+href="https://yourdomain.com/tools/tool-name.html">
+
+<link rel="stylesheet"
+href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.css">
+
+<style>
+
+/* =========================
+RESET
+========================= */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  width:100%;
+  font-family:Verdana,Geneva,Tahoma,sans-serif;
+  background:#f3f3f3;
+  overflow-x:hidden;
+  color:#222;
+}
+
+a{
+  text-decoration:none;
+}
+
+/* =========================
+NAVBAR
+========================= */
+
+.navbar{
+  background:#fff;
+  width:100%;
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:999;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  box-shadow:0 2px 10px rgba(0,0,0,.15);
+}
+
+.navbar-brand{
+  font-size:22px;
+  font-weight:700;
+  color:#ff671f;
+  padding:16px;
+}
+
+.navbar-links{
+  display:flex;
+  gap:20px;
+  padding-right:20px;
+}
+
+.navbar-links a{
+  color:#ff671f;
+  font-weight:700;
+}
+
+/* =========================
+HEADER
+========================= */
+
+.heading-container{
+  background:#ff671f;
+  margin-top:70px;
+  padding:30px 20px;
+  text-align:center;
+  color:#fff;
+}
+
+.heading-text{
+  font-size:34px;
+  font-weight:700;
+  margin-bottom:12px;
+}
+
+.heading-subtext{
+  max-width:850px;
+  margin:auto;
+  line-height:1.8;
+}
+
+/* =========================
+TOOL BOX
+========================= */
+
+.tool-wrapper{
+  width:96%;
+  margin:35px auto;
+}
+
+.tool-container{
+  background:#fff;
+  box-shadow:0 2px 10px rgba(0,0,0,.15);
+  padding:25px;
+}
+
+.tool-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:25px;
+}
+
+.upload-box{
+  text-align:center;
+}
+
+.preview-box{
+  text-align:center;
+}
+
+.box-title{
+  font-size:22px;
+  margin-bottom:20px;
+  border-bottom:2px dashed #ddd;
+  padding-bottom:10px;
+}
+
+.preview-image,
+.placeholder-box{
+  width:220px;
+  height:250px;
+  border:5px dashed #d3d3d3;
+  margin:auto;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#fff;
+}
+
+.preview-image{
+  display:none;
+  object-fit:cover;
+}
+
+.placeholder-box{
+  font-size:120px;
+  color:#ff671f;
+}
+
+.tool-buttons{
+  margin-top:20px;
+}
+
+.btn{
+  background:#ff671f;
+  color:#fff;
+  border:none;
+  padding:12px 22px;
+  cursor:pointer;
+  font-weight:700;
+  margin:5px;
+}
+
+.btn:hover{
+  opacity:.9;
+}
+
+.custom-file-input{
+  display:none;
+}
+
+.image-info{
+  margin-top:15px;
+  line-height:1.8;
+  font-size:14px;
+}
+
+/* =========================
+HOW TO
+========================= */
+
+.how-to{
+  width:96%;
+  margin:auto;
+  margin-bottom:40px;
+  background:#fff;
+  border:1px solid #06038d;
+  display:flex;
+  padding:20px;
+}
+
+.how-left{
+  flex:60%;
+}
+
+.how-right{
+  flex:40%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:150px;
+  color:#06038d;
+}
+
+.section-title{
+  text-align:center;
+  font-size:32px;
+  margin-bottom:30px;
+}
+
+.step{
+  display:flex;
+  margin-bottom:15px;
+}
+
+.step-icon{
+  width:35px;
+  height:35px;
+  border-radius:50%;
+  background:#06038d;
+  color:#fff;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin-right:12px;
+  font-weight:700;
+}
+
+.step-text{
+  line-height:1.8;
+}
+
+/* =========================
+DESCRIPTION
+========================= */
+
+.description{
+  width:96%;
+  margin:auto;
+  background:#fff;
+  padding:25px;
+}
+
+.description p{
+  line-height:1.9;
+  margin-bottom:16px;
+}
+
+/* =========================
+FAQ
+========================= */
+
+.faqs{
+  margin-top:40px;
+}
+
+.accordion{
+  max-width:90%;
+  margin:auto;
+}
+
+.accordion-item{
+  border-bottom:1px solid #ddd;
+  padding:15px 10px;
+}
+
+.accordion-question{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  cursor:pointer;
+}
+
+.accordion-question:hover{
+  color:#ff671f;
+}
+
+.accordion-answer{
+  display:none;
+  padding-top:15px;
+  border-top:1px solid #ff671f;
+  margin-top:15px;
+  line-height:1.9;
+}
+
+.accordion-item.active .accordion-answer{
+  display:block;
+}
+
+.accordion-item.active .accordion-question{
+  color:#ff671f;
+}
+
+/* =========================
+CROPPER
+========================= */
+
+.cropper-popup{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,.85);
+  z-index:9999;
+  display:none;
+  justify-content:center;
+  align-items:center;
+}
+
+.cropper-content{
+  background:#fff;
+  padding:20px;
+  max-width:90%;
+  max-height:95%;
+  overflow:auto;
+  position:relative;
+}
+
+.cropper-close{
+  position:absolute;
+  top:10px;
+  right:15px;
+  font-size:30px;
+  cursor:pointer;
+}
+
+.cropper-content img{
+  max-width:100%;
+}
+
+.crop-buttons{
+  margin-top:20px;
+  text-align:center;
+}
+
+/* =========================
+FOOTER
+========================= */
+
+.headerbody{
+  display:grid;
+  grid-template-rows:1fr auto;
+  background:white;
+  min-height:50vh;
+}
+
+.FTR{
+  z-index:1;
+  --FTR-background:#ff671f;
+  display:grid;
+  position:relative;
+  grid-area:FTR;
+  min-height:12rem;
+  margin-top:50px;
+}
+
+.bubbles{
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:1rem;
+  background:var(--FTR-background);
+  filter:url("#blob");
+}
+
+.bubble{
+  position:absolute;
+  left:var(--position,50%);
+  background:var(--FTR-background);
+  border-radius:100%;
+  animation:
+  bubble-size var(--time,4s) ease-in infinite var(--delay,0s),
+  bubble-move var(--time,4s) ease-in infinite var(--delay,0s);
+  transform:translate(-50%,100%);
+}
+
+.content{
+  z-index:2;
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:4rem;
+  padding:2rem;
+  background:var(--FTR-background);
+  color:#fff;
+}
+
+.content a,
+.content p{
+  color:#fff;
+}
+
+.footer__btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  height:38px;
+  background:#fff;
+  border-radius:100px;
+  color:#ff671f !important;
+  padding:0 22px;
+  margin-top:15px;
+  font-weight:700;
+}
+
+@keyframes bubble-size{
+
+  0%,75%{
+    width:var(--size,4rem);
+    height:var(--size,4rem);
+  }
+
+  100%{
+    width:0;
+    height:0;
+  }
+
+}
+
+@keyframes bubble-move{
+
+  0%{
+    bottom:-4rem;
+  }
+
+  100%{
+    bottom:var(--distance,10rem);
+  }
+
+}
+
+/* =========================
+MOBILE
+========================= */
+
+@media(max-width:768px){
+
+  .navbar{
+    flex-direction:column;
+    padding-bottom:15px;
+  }
+
+  .tool-grid{
+    grid-template-columns:1fr;
+  }
+
+  .how-to{
+    flex-direction:column;
+  }
+
+  .how-right{
+    margin-top:20px;
+    font-size:90px;
+  }
+
+  .content{
+    grid-template-columns:1fr;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+<a class="navbar-brand" href="/">
+dozni tools
+</a>
+
+<div class="navbar-links">
+
+<a href="/">Home</a>
+<a href="/about.html">About</a>
+<a href="/contact.html">Contact</a>
+
+</div>
+
+</nav>
+
+<!-- HEADER -->
+
+<div class="heading-container">
+
+<h1 class="heading-text">
+Tool Name
+</h1>
+
+<p class="heading-subtext">
+Free online tool to resize, compress or convert images easily.
+</p>
+
+</div>
+
+<!-- TOOL -->
+
+<section class="tool-wrapper">
+
+<div class="tool-container">
+
+<div class="tool-grid">
+
+<!-- LEFT -->
+
+<div class="upload-box">
+
+<h2 class="box-title">
+Upload Image
+</h2>
+
+<label class="btn" for="imageInput">
+Upload
+</label>
+
+<input
+type="file"
+id="imageInput"
+class="custom-file-input"
+accept="image/*">
+
+<div class="tool-buttons">
+
+<button class="btn">
+Download
+</button>
+
+</div>
+
+</div>
+
+<!-- RIGHT -->
+
+<div class="preview-box">
+
+<h2 class="box-title">
+Preview
+</h2>
+
+<div class="placeholder-box"
+id="placeholderBox">
+
+<i class="fas fa-image"></i>
+
+</div>
+
+<img
+id="previewImage"
+class="preview-image"
+src=""
+alt="Preview">
+
+<div class="image-info">
+
+<div>
+Width: 0 px
+</div>
+
+<div>
+Height: 0 px
+</div>
+
+<div>
+Size: 0 KB
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- HOW TO -->
+
+<section class="how-to">
+
+<div class="how-left">
+
+<h2 class="section-title">
+How To Use This Tool
+</h2>
+
+<div class="step">
+<div class="step-icon">1</div>
+<div class="step-text">
+Upload your image using the upload button.
+</div>
+</div>
+
+<div class="step">
+<div class="step-icon">2</div>
+<div class="step-text">
+Preview and crop the image if needed.
+</div>
+</div>
+
+<div class="step">
+<div class="step-icon">3</div>
+<div class="step-text">
+Resize or compress the image automatically.
+</div>
+</div>
+
+<div class="step">
+<div class="step-icon">4</div>
+<div class="step-text">
+Download the final processed image.
+</div>
+</div>
+
+</div>
+
+<div class="how-right">
+✓
+</div>
+
+</section>
+
+<!-- DESCRIPTION -->
+
+<div class="description">
+
+<h2 class="section-title">
+About This Tool
+</h2>
+
+<p>
+This free online tool helps users resize,
+compress and convert images directly inside the browser.
+</p>
+
+<p>
+The tool works on desktop and mobile devices
+without requiring software installation.
+</p>
+
+<!-- FAQ -->
+
+<div class="faqs">
+
+<h2 class="section-title">
+Frequently Asked Questions
+</h2>
+
+<div class="accordion">
+
+<div class="accordion-item active">
+
+<div class="accordion-question">
+<h3>Is this tool free?</h3>
+<span>+</span>
+</div>
+
+<div class="accordion-answer">
+<p>
+Yes. This tool is completely free to use.
+</p>
+</div>
+
+</div>
+
+<div class="accordion-item">
+
+<div class="accordion-question">
+<h3>Does this work on mobile?</h3>
+<span>+</span>
+</div>
+
+<div class="accordion-answer">
+<p>
+Yes. The tool is fully mobile responsive.
+</p>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- CROPPER -->
+
+<div class="cropper-popup"
+id="cropperPopup">
+
+<div class="cropper-content">
+
+<span class="cropper-close"
+onclick="closeCropper()">
+×
+</span>
+
+<img id="cropperImage">
+
+<div class="crop-buttons">
+
+<button class="btn"
+onclick="cropImage()">
+Crop
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- FOOTER -->
+
+<div class="headerbody">
+
+<footer class="FTR">
+
+<div class="bubbles">
+
+<div class="bubble"
+style="--size:3rem;--distance:8rem;--position:10%;--time:3s;--delay:-2s;"></div>
+
+<div class="bubble"
+style="--size:5rem;--distance:10rem;--position:50%;--time:4s;--delay:-1s;"></div>
+
+<div class="bubble"
+style="--size:4rem;--distance:9rem;--position:85%;--time:3s;--delay:-3s;"></div>
+
+</div>
+
+<div class="content">
+
+<div>
+
+<h3>dozni tools</h3>
+
+<p>
+Free online image and PDF tools.
+</p>
+
+<a class="footer__btn"
+href="mailto:contact@yourdomain.com">
+Email Us
+</a>
+
+</div>
+
+<div>
+
+<h3>Quick Links</h3>
+
+<a href="/">Home</a>
+<a href="/privacy-policy.html">
+Privacy Policy
+</a>
+
+</div>
+
+</div>
+
+</footer>
+
+</div>
+
+<!-- SVG -->
+
+<svg style="position:fixed; top:100vh">
+
+<defs>
+
+<filter id="blob">
+
+<feGaussianBlur
+in="SourceGraphic"
+stdDeviation="10"
+result="blur" />
+
+<feColorMatrix
+in="blur"
+mode="matrix"
+values="
+1 0 0 0 0
+0 1 0 0 0
+0 0 1 0 0
+0 0 0 20 -10"
+result="blob" />
+
+</filter>
+
+</defs>
+
+</svg>
+
+<!-- SCRIPTS -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.js"></script>
+
+<script>
+
+const imageInput =
+document.getElementById("imageInput");
+
+const previewImage =
+document.getElementById("previewImage");
+
+const placeholderBox =
+document.getElementById("placeholderBox");
+
+const cropperPopup =
+document.getElementById("cropperPopup");
+
+const cropperImage =
+document.getElementById("cropperImage");
+
+let cropper;
+
+imageInput.addEventListener("change", function(e){
+
+const file = e.target.files[0];
+
+if(!file) return;
+
+const reader = new FileReader();
+
+reader.onload = function(event){
+
+cropperPopup.style.display = "flex";
+
+cropperImage.src = event.target.result;
+
+if(cropper){
+cropper.destroy();
+}
+
+cropper = new Cropper(cropperImage,{
+aspectRatio:3/4,
+viewMode:1
+});
+
+};
+
+reader.readAsDataURL(file);
+
+});
+
+function cropImage(){
+
+const canvas =
+cropper.getCroppedCanvas();
+
+previewImage.src =
+canvas.toDataURL();
+
+previewImage.style.display =
+"block";
+
+placeholderBox.style.display =
+"none";
+
+cropperPopup.style.display =
+"none";
+
+}
+
+function closeCropper(){
+
+cropperPopup.style.display =
+"none";
+
+}
+
+document.querySelectorAll(".accordion-question")
+.forEach(item => {
+
+item.addEventListener("click", () => {
+
+const parent = item.parentElement;
+
+parent.classList.toggle("active");
+
+});
+
+});
+
+</script>
+
+</body>
+</html>
