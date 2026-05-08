@@ -1,24 +1,24 @@
-```js
 async function loadIncludes() {
 
-  let headerPath = "/partials/header.html";
-  let footerPath = "/partials/footer.html";
+  const isToolPage =
+    window.location.pathname.includes("/tools/");
 
-  // if inside tools folder
-  if (window.location.pathname.includes("/tools/")) {
-    headerPath = "../partials/header.html";
-    footerPath = "../partials/footer.html";
-  }
+  const headerPath = isToolPage
+    ? "../partials/header.html"
+    : "./partials/header.html";
 
-  const headerResponse = await fetch(headerPath);
-  const footerResponse = await fetch(footerPath);
+  const footerPath = isToolPage
+    ? "../partials/footer.html"
+    : "./partials/footer.html";
+
+  const header = await fetch(headerPath);
+  const footer = await fetch(footerPath);
 
   document.getElementById("header").innerHTML =
-    await headerResponse.text();
+    await header.text();
 
   document.getElementById("footer").innerHTML =
-    await footerResponse.text();
+    await footer.text();
 }
 
-loadIncludes();
-```
+window.addEventListener("DOMContentLoaded", loadIncludes);
