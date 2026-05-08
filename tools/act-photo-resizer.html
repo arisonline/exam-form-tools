@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>ACT Form Image Resizer</title>
+
+  <!-- Fonts -->
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+  />
+
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap"
+  />
+
+  <!-- Normalize -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+  />
+
+  <!-- Cropper CSS -->
+  <link
+    rel="stylesheet"
+    href="../css/cropper-js.css"
+  />
+
+  <!-- Main CSS -->
+  <link
+    rel="stylesheet"
+    href="../css/main.css"
+  />
+
+  <!-- Others CSS -->
+  <link
+    rel="stylesheet"
+    href="../css/others.css"
+  />
+
+  <!-- Footer CSS -->
+  <link
+    rel="stylesheet"
+    href="../css/footer.css"
+  />
+</head>
+
+<body>
+
+<div class="mni">
+
+  <!-- Header -->
+  <nav class="navbar">
+    <a class="navbar-brand" href="/">
+      actestinfo.blogspot.com
+    </a>
+  </nav>
+
+  <!-- Heading -->
+  <div class="heading-container">
+    <div class="change-form">
+      <div class="change-form-menu">
+
+        Choose Form:
+
+        <select
+          id="formDropdown"
+          onchange="changeForm()"
+        >
+          <option value="" disabled>
+            Select a form
+          </option>
+
+          <option value="act" selected>
+            ACT Form
+          </option>
+
+          <option value="aipmt">
+            AIPMT Form
+          </option>
+
+          <option value="cds">
+            CDS Form
+          </option>
+
+          <option value="du">
+            DU Form
+          </option>
+
+          <option value="gate">
+            GATE Form
+          </option>
+
+          <option value="ipucet">
+            IPU CET Form
+          </option>
+
+          <option value="jeemain">
+            JEE MAIN Form
+          </option>
+
+          <option value="neet">
+            NEET Form
+          </option>
+
+          <option value="nda">
+            NDA Form
+          </option>
+
+          <option value="sat">
+            SAT Form
+          </option>
+
+          <option value="ssc">
+            SSC Form
+          </option>
+
+          <option value="ugcnet">
+            UGC NET Form
+          </option>
+        </select>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="heading-text">
+    Image resizer for ACT test
+  </div>
+
+  <!-- Upload Section -->
+  <div class="d-flex">
+
+    <div class="container-fluid">
+
+      <div class="has-shadow">
+
+        <div class="row1">
+
+          <!-- Left -->
+          <div class="col1">
+
+            <div class="txt-center">
+
+              <div class="border-bottom">
+                <h4 style="font-weight:600;">
+                  Photo
+                </h4>
+              </div>
+
+              <div class="my-mb">
+
+                <label
+                  class="btn-fp"
+                  for="photoInput"
+                >
+                  Upload
+                </label>
+
+                <input
+                  class="custom-file-input"
+                  type="file"
+                  id="photoInput"
+                  accept="image/*"
+                  onchange="
+                  showCropperPopup(
+                  'photoInput',
+                  'photoPreview',
+                  'cropperPopupPhoto'
+                  )"
+                />
+
+              </div>
+
+              <div class="my-mb">
+
+                <a
+                  class="btn-fp"
+                  download=""
+                  onclick="
+                  resizeCroppedImage(
+                  'photoPreview',
+                  480,
+                  640,
+                  'resized_photo.jpg',
+                  'photoInfo',
+                  100
+                  )"
+                >
+                  Download
+                </a>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Right -->
+          <div class="col2">
+
+            <div class="m-rslt">
+
+              <div
+                class="demo-man-logo"
+                id="demoManLogoPhoto"
+              >
+                <i class="fas fa-user"></i>
+              </div>
+
+              <img
+                class="pics"
+                id="photoPreview"
+                src=""
+                alt="Preview"
+              />
+
+              <div
+                class="text-center mt-2 bg-white"
+                style="
+                color:black;
+                width:175px;
+                text-align:center;
+                "
+                id="photoInfo"
+              >
+                <div class="image-info"></div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Cropper Modal -->
+  <div class="gg-model">
+
+    <div
+      class="cropper-popup"
+      id="cropperPopupPhoto"
+      style="display:none;"
+    >
+
+      <div class="cropper-popup-content">
+
+        <span
+          class="cropper-popup-close"
+          onclick="
+          hideCropperPopup(
+          'cropperPopupPhoto'
+          )"
+        >
+          &times;
+        </span>
+
+        <h3 class="cropper-popup-heading">
+          Crop Image
+        </h3>
+
+        <div class="img-container">
+
+          <img
+            id="cropperImagePhoto"
+            alt="your image"
+          />
+
+        </div>
+
+        <div class="cropper-popup-buttons">
+
+          <button
+            class="btn crop"
+            onclick="cropImage()"
+          >
+            Crop
+          </button>
+
+          <button
+            class="btn cancel"
+            onclick="
+            hideCropperPopup(
+            'cropperPopupPhoto'
+            )"
+          >
+            Cancel
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- How To -->
+<div class="idn">
+
+  <hr
+    style="
+    background-color:#06038D;
+    color:#06038D;
+    height:10px;
+    "
+  />
+
+  <section class="how-to-resize">
+
+    <div class="h2o">
+
+      <h2 class="section-title">
+        How to Resize ACT Form Images Online?
+      </h2>
+
+      <div class="how-to-step">
+        <div class="step-icon">1.</div>
+
+        <div class="step-text">
+          Select the image using upload button.
+        </div>
+      </div>
+
+      <div class="how-to-step">
+        <div class="step-icon">2.</div>
+
+        <div class="step-text">
+          Crop image according to requirement.
+        </div>
+      </div>
+
+      <div class="how-to-step">
+        <div class="step-icon">3.</div>
+
+        <div class="step-text">
+          Click crop button.
+        </div>
+      </div>
+
+      <div class="how-to-step">
+        <div class="step-icon">4.</div>
+
+        <div class="step-text">
+          Download resized ACT image.
+        </div>
+      </div>
+
+    </div>
+
+    <div class="material-symbols-outlined h2oi">
+      verified
+    </div>
+
+  </section>
+
+</div>
+
+<!-- JS -->
+
+<script src="../libs/cropper.min.js"></script>
+
+<script src="../js/main.js"></script>
+
+<script src="../js/accordion.js"></script>
+
+<script src="../js/cropper.js"></script>
+
+</body>
+</html>
