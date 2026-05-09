@@ -1,12 +1,14 @@
-```js id="l7z8mw"
+```js id="fjlwm9"
 const toolsGrid =
 document.getElementById("toolsGrid");
 
-if(toolsGrid){
+if (toolsGrid && typeof tools !== "undefined") {
 
-  tools.slice(0,8).forEach(tool => {
+  let html = "";
 
-    toolsGrid.innerHTML += `
+  tools.slice(0, 8).forEach(tool => {
+
+    html += `
 
     <div class="tool-card">
 
@@ -39,6 +41,8 @@ if(toolsGrid){
     `;
 
   });
+
+  toolsGrid.innerHTML = html;
 
 }
 ```
