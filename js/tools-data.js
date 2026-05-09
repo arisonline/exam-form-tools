@@ -1,4 +1,4 @@
-```js id="x4q5dy"
+
 const tools = [
 
 {
@@ -66,4 +66,4 @@ const tools = [
 }
 
 ];
-```
+
