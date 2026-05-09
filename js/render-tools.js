@@ -1,4 +1,4 @@
-```js id="fjlwm9"
+
 const toolsGrid =
 document.getElementById("toolsGrid");
 
@@ -45,4 +45,4 @@ if (toolsGrid && typeof tools !== "undefined") {
   toolsGrid.innerHTML = html;
 
 }
-```
+
