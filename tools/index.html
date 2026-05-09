@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>All Tools</title>
+
+<meta
+name="description"
+content="Browse all online image resize, compress and PDF tools.">
+
+<link
+rel="stylesheet"
+href="../css/main.css">
+
+<link
+rel="stylesheet"
+href="../css/others.css">
+
+<link
+href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap"
+rel="stylesheet">
+
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+/* PAGE */
+
+.tools-page{
+  width:96%;
+  margin:100px auto 40px;
+}
+
+.page-heading{
+  text-align:center;
+  margin-bottom:40px;
+}
+
+.page-heading h1{
+  font-size:42px;
+  margin-bottom:15px;
+}
+
+.page-heading p{
+  max-width:850px;
+  margin:auto;
+  line-height:1.8;
+}
+
+/* TOOLS */
+
+.tools-grid{
+  display:grid;
+  grid-template-columns:
+  repeat(auto-fit,minmax(280px,1fr));
+  gap:25px;
+}
+
+.tool-card{
+  background:#fff;
+  box-shadow:0 2px 10px rgba(0,0,0,.15);
+  transition:.3s;
+  overflow:hidden;
+}
+
+.tool-card:hover{
+  transform:translateY(-6px);
+}
+
+.tool-top{
+  background:#fff;
+  padding:25px;
+  text-align:center;
+}
+
+.tool-icon{
+  width:120px;
+  height:120px;
+  margin:auto;
+  border:5px dashed #d3d3d3;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:58px;
+  color:#ff671f;
+  margin-bottom:20px;
+}
+
+.tool-card h3{
+  font-size:24px;
+  margin-bottom:12px;
+}
+
+.tool-card p{
+  color:#555;
+  line-height:1.8;
+  font-size:15px;
+}
+
+.tool-bottom{
+  padding:20px;
+  background:#fafafa;
+  border-top:1px solid #eee;
+}
+
+.tool-btn{
+  width:100%;
+  display:block;
+  text-align:center;
+  background:#ff671f;
+  color:#fff;
+  padding:14px;
+  font-weight:700;
+  transition:.3s;
+}
+
+.tool-btn:hover{
+  background:#e25a16;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div id="header"></div>
+
+<!-- PAGE -->
+
+<section class="tools-page">
+
+<div class="page-heading">
+
+<h1>
+All Tools
+</h1>
+
+<p>
+Browse all online image resize,
+compress and PDF tools.
+</p>
+
+</div>
+
+<!-- AUTO TOOLS -->
+
+<div
+class="tools-grid"
+id="allToolsGrid">
+</div>
+
+</section>
+
+<!-- FOOTER -->
+<div id="footer"></div>
+
+<!-- JS -->
+
+<script src="../js/include.js"></script>
+
+<script src="../js/tools-data.js"></script>
+
+<script>
+
+window.addEventListener(
+"DOMContentLoaded",
+() => {
+
+const allToolsGrid =
+document.getElementById(
+"allToolsGrid"
+);
+
+if(
+!allToolsGrid ||
+typeof tools === "undefined"
+) return;
+
+let html = "";
+
+tools.forEach(tool => {
+
+html += `
+
+<div class="tool-card">
+
+  <div class="tool-top">
+
+    <div class="tool-icon">
+      <i class="fas ${tool.icon}"></i>
+    </div>
+
+    <h3>${tool.title}</h3>
+
+    <p>
+      ${tool.description}
+    </p>
+
+  </div>
+
+  <div class="tool-bottom">
+
+    <a
+    href="${tool.url.replace('./','../')}"
+    class="tool-btn">
+      Open Tool
+    </a>
+
+  </div>
+
+</div>
+
+`;
+
+});
+
+allToolsGrid.innerHTML = html;
+
+});
+
+</script>
+
+</body>
+</html>
