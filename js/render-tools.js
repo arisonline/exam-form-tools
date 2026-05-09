@@ -1,8 +1,11 @@
+window.addEventListener("DOMContentLoaded", () => {
 
-const toolsGrid =
-document.getElementById("toolsGrid");
+  const toolsGrid =
+    document.getElementById("toolsGrid");
 
-if (toolsGrid && typeof tools !== "undefined") {
+  if (!toolsGrid) return;
+
+  if (typeof tools === "undefined") return;
 
   let html = "";
 
@@ -44,5 +47,4 @@ if (toolsGrid && typeof tools !== "undefined") {
 
   toolsGrid.innerHTML = html;
 
-}
-
+});
