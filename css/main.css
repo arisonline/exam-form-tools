@@ -904,6 +904,15 @@ HOMEPAGE FINAL FIX
   display:block;
 }
 
+
+
+
+
+
+.accordion-item.active .accordion-icon {
+  transform: rotate(45deg);
+}
+
 /* TOOLS */
 
 .tools-grid{
