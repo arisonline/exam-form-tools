@@ -25,7 +25,7 @@ body {
   overflow-x: hidden;
 }
 footer {
-  margin-top: 250;
+  margin-top: 350;
 }
 *,
 footer,
@@ -881,7 +881,7 @@ HOMEPAGE FINAL FIX
 }
 
 .accordion-question h4{
-  font-size:24px;
+  font-size:22px;
 }
 
 .accordion-icon{
@@ -897,7 +897,7 @@ HOMEPAGE FINAL FIX
 
   font-size:20px;
 
-  line-height:1.9;
+  line-height:1.8;
 }
 
 .accordion-item.active .accordion-answer{
