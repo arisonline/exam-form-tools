@@ -45,8 +45,8 @@ body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .navbar {
-  background-color: #fff;
-  color: #fff;
+  background-color: white;
+  color: white;
   justify-content: space-between;
   width: 100%;
   z-index: 100;
@@ -76,20 +76,22 @@ body {
   width: 100%;
   margin-top: 80px;
   margin-bottom: 20px;
-  padding: 25px;
-  border-bottom: 1px dashed #d3d3d3;
+  padding:55px 20px;
+  border-bottom:1px dashed #d3d3d3;
+  text-align:center;
 }
 .heading-text {
-  font-size: 26px;
-  font-weight: 600;
-  margin-bottom: 0;
+  color: white;
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 15px;
 }
 .change-form {
   font-weight: 600;
 }
 .change-form-menu {
   width: 80%;
-  color: #fff;
+  color: white;
   margin-left: 10%;
   padding-right: 3px;
   display: flex;
@@ -112,7 +114,7 @@ body {
 }
 .btn-fp {
   background-color: #ff671f;
-  color: #fff;
+  color: white;
   border-radius: 0;
   padding: 0.5rem 1rem;
   border: none;
@@ -121,7 +123,7 @@ body {
 .bg-white,
 .demo-man-logo,
 .info-box {
-  background-color: #fff;
+  background-color: white;
 }
 .pics,
 a {
@@ -140,7 +142,7 @@ a {
 }
 .btn-fp:hover,
 .headerbody .FTR .content b {
-  color: #fff;
+  color: white;
 }
 .pics {
   display: flex;
@@ -262,7 +264,7 @@ a {
   position: relative;
   max-width: 80vh;
   max-height: 100%;
-  background-color: #fff;
+  background-color: white;
   border-radius: 5px;
   padding: 20px;
   overflow: hidden;
@@ -297,11 +299,11 @@ a {
   height: 35px;
   font-size: 20px;
   background-color: #000;
-  color: #fff;
+  color: white;
   border: none;
 }
 .cropper-popup-buttons button.crop:hover {
-  background-color: #fff;
+  background-color: white;
   color: #000;
   border: 1px solid #000;
 }
@@ -311,10 +313,10 @@ a {
   border: none;
   justify-self: end;
   background-color: red;
-  color: #fff;
+  color: white;
 }
 .cropper-popup-buttons button.cancel:hover {
-  background-color: #fff;
+  background-color: white;
   color: red;
   border: 1px solid red;
 }
@@ -329,7 +331,7 @@ a {
 .how-to-resize {
   display: flex;
   justify-content: space-between;
-  background-color: #fff;
+  background-color: white;
   padding: 5px;
   border-radius: none;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -345,7 +347,7 @@ a {
   flex: 40%;
   justify-content: center;
   margin: auto;
-  font-size: 138px;
+  font-size: 160px;
   color: #06038d;
 }
 .how-to-step {
@@ -354,10 +356,10 @@ a {
   margin-bottom: 15px;
 }
 .step-icon {
-  background-color: #fff;
+  background-color: white;
   color: #06038d;
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -389,20 +391,20 @@ a {
   }
 }
 .description {
-  background-color: #fff;
+  background-color: white;
   padding: 10px;
   width: 99%;
   margin: auto;
 }
 .section-title {
-  font-size: 24px;
+  font-size: 28px;
   color: #333;
   margin-bottom: 20px;
 }
 .description p {
-  font-size: 16px;
+  font-size: 20px;
   color: #333;
-  margin-bottom: 15px;
+  margin-bottom: 16px;
 }
 .how-to-use {
   font-size: 16px;
@@ -529,7 +531,7 @@ a {
   display: flex;
   flex-flow: row wrap;
   padding: 30px 30px 20px;
-  color: #fff;
+  color: white;
   background-color: #ff671f;
   border-top: 1px solid #ff671f;
 }
@@ -557,7 +559,7 @@ a {
 }
 .footer address {
   font-style: normal;
-  color: #fff;
+  color: white;
 }
 .footer__btn {
   display: flex;
@@ -565,7 +567,7 @@ a {
   justify-content: center;
   height: 36px;
   max-width: max-content;
-  background-color: #fff;
+  background-color: white;
   border-radius: 100px;
   color: #ff671f !important;
   line-height: 0;
@@ -593,11 +595,11 @@ a {
 }
 .nav__ul a {
   font-size: 14px;
-  color: #fff;
+  color: white;
 }
 .nav__ul a:hover {
   color: #000 !important;
-  background-color: #fff;
+  background-color: white;
   padding: 2px;
 }
 .nav__ul--extra {
@@ -607,7 +609,7 @@ a {
 .legal {
   display: flex;
   flex-wrap: wrap;
-  color: #ffffff;
+  color: whitefff;
 }
 .legal__links {
   display: flex;
@@ -673,7 +675,7 @@ HOMEPAGE FINAL FIX
 }
 
 .heading-text{
-  color:#fff;
+  color:white;
   font-size:48px;
   font-weight:700;
   margin-bottom:18px;
@@ -681,10 +683,10 @@ HOMEPAGE FINAL FIX
 }
 
 .heading-subtext{
-  color:#fff;
-  font-size:20px;
+  color:white;
+  font-size:18px;
   line-height:1.9;
-  max-width:950px;
+  max-width:850px;
   margin:auto;
   text-align:center;
 }
@@ -692,22 +694,21 @@ HOMEPAGE FINAL FIX
 /* HERO BUTTONS */
 
 .hero-buttons{
-  margin-top:35px;
+  margin-top:30px;
   display:flex;
   justify-content:center;
   align-items:center;
-  gap:18px;
+  gap:15px;
   flex-wrap:wrap;
 }
 
 .hero-btn{
-  background:#fff;
+  background:white;
   color:#ff671f !important;
-  padding:15px 32px;
+  padding:14px 28px;
   border-radius:4px;
   font-weight:700;
   transition:.3s;
-  border:2px solid #fff;
 }
 
 .hero-btn:hover{
@@ -716,7 +717,8 @@ HOMEPAGE FINAL FIX
 
 .hero-btn-outline{
   background:transparent;
-  color:#fff !important;
+  color:white !important;
+  border:2px solid white;
 }
 
 /* SECTION */
@@ -727,13 +729,13 @@ HOMEPAGE FINAL FIX
 .faqs{
   width:96%;
   margin:auto;
-  margin-top:45px;
+  margin-top:40px;
 }
 
 .section-title{
-  font-size:42px;
+  font-size:28px;
   font-weight:700;
-  margin-bottom:28px;
+  margin-bottom:20px;
   color:#333;
 }
 
@@ -743,24 +745,24 @@ HOMEPAGE FINAL FIX
   display:grid;
   grid-template-columns:
   repeat(auto-fit,minmax(250px,1fr));
-  gap:22px;
+  gap:20px;
 }
 
 .category-card{
-  background:#fff;
-  padding:28px;
+  background:white;
+  padding:25px;
   box-shadow:0 2px 10px rgba(0,0,0,.15);
 }
 
 .category-card h3{
   color:#ff671f;
-  margin-bottom:18px;
-  font-size:28px;
+  margin-bottom:15px;
+  font-size:24px;
 }
 
 .category-card ul{
-  margin-left:24px;
-  line-height:2.2;
+  margin-left:18px;
+  line-height:2;
 }
 
 .category-card li{
@@ -774,15 +776,15 @@ HOMEPAGE FINAL FIX
   justify-content:space-between;
   align-items:center;
 
-  background:#fff;
+  background:white;
 
   border:1px solid #06038d;
 
-  padding:30px;
+  padding:20px;
 
   width:96%;
 
-  margin:45px auto;
+  margin:40px auto;
 
   box-shadow:0 2px 10px rgba(0,0,0,.1);
 }
@@ -796,7 +798,7 @@ HOMEPAGE FINAL FIX
   display:flex;
   justify-content:center;
   align-items:center;
-
+  text-align: center;
   font-size:160px;
   color:#06038d;
 }
@@ -804,17 +806,17 @@ HOMEPAGE FINAL FIX
 .how-to-step{
   display:flex;
   align-items:center;
-  margin-bottom:22px;
+  margin-bottom:15px;
 }
 
 .step-icon{
-  width:42px;
-  height:42px;
+  width:35px;
+  height:35px;
 
   border-radius:50%;
 
   background:#06038d;
-  color:#fff;
+  color:white;
 
   display:flex;
   align-items:center;
@@ -822,7 +824,7 @@ HOMEPAGE FINAL FIX
 
   font-weight:700;
 
-  margin-right:15px;
+  margin-right:12px;
 }
 
 .step-text{
@@ -833,33 +835,33 @@ HOMEPAGE FINAL FIX
 /* DESCRIPTION */
 
 .description{
-  background:#fff;
-  padding:30px;
+  background:white;
+  padding:25px;
   box-shadow:0 2px 10px rgba(0,0,0,.1);
 }
 
 .description p{
   font-size:20px;
-  line-height:2;
-  margin-bottom:20px;
-  color:#444;
+  line-height:1.9;
+  margin-bottom:16px;
 }
 
 /* FAQ */
 
 .faqs{
-  margin-top:50px;
+  margin-top:40px;
 }
 
 .accordion{
-  width:100%;
-  max-width:100%;
+  max-width:96%;
+  margin: auto;
 }
 
 .accordion-item{
-  background:#fff;
+  background:white;
   margin-bottom:16px;
-
+  border-bottom:1px solid #ddd;
+  padding:15px 10px;
   border-radius:4px;
 
   overflow:hidden;
@@ -880,16 +882,15 @@ HOMEPAGE FINAL FIX
 }
 
 .accordion-question:hover{
-  background:#fff7f2;
+  background:#ff671f;
 }
 
 .accordion-question h4{
   font-size:24px;
-  color:#222;
 }
 
 .accordion-icon{
-  font-size:34px;
+  font-size:30px;
   font-weight:700;
   color:#ff671f;
 }
@@ -899,11 +900,9 @@ HOMEPAGE FINAL FIX
 
   padding:0 24px 24px;
 
-  font-size:18px;
+  font-size:20px;
 
-  line-height:2;
-
-  color:#555;
+  line-height:1.9;
 }
 
 .accordion-item.active .accordion-answer{
@@ -923,7 +922,7 @@ HOMEPAGE FINAL FIX
 }
 
 .tool-card{
-  background:#fff;
+  background:white;
 
   box-shadow:0 2px 10px rgba(0,0,0,.15);
 
@@ -955,8 +954,8 @@ HOMEPAGE FINAL FIX
   width:120px;
   height:120px;
 
-  margin:auto auto 20px;
-
+  margin:auto;
+  margin-bottom:20px;
   border:5px dashed #d3d3d3;
 
   display:flex;
@@ -964,59 +963,40 @@ HOMEPAGE FINAL FIX
   justify-content:center;
 
   font-size:58px;
-
+ 
   color:#ff671f;
 }
 
 .tool-card h3{
-  min-height:72px;
-
   display:flex;
   align-items:center;
   justify-content:center;
-
-  font-size:32px;
-
+  font-size:22px;
   line-height:1.3;
-
-  margin-bottom:14px;
+  margin-bottom:12px;
 }
 
 .tool-card p{
   flex:1;
-
-  font-size:18px;
-
-  line-height:1.9;
-
-  color:#555;
+  font-size:20px;
+  line-height:1.8;
 }
 
 .tool-bottom{
   margin-top:auto;
-
-  padding:22px;
-
+  padding:20px;
   background:#fafafa;
-
   border-top:1px solid #eee;
 }
 
 .tool-btn{
   display:block;
-
   width:100%;
-
   text-align:center;
-
   background:#ff671f;
-
-  color:#fff !important;
-
+  color:white !important;
   padding:15px;
-
   font-weight:700;
-
   transition:.3s;
 }
 
@@ -1041,7 +1021,7 @@ HOMEPAGE FINAL FIX
   }
 
   .section-title{
-    font-size:32px;
+    font-size:28px;
   }
 
   .tool-card h3{
