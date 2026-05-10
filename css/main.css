@@ -432,20 +432,26 @@ a {
   min-height:12rem;
 
   margin-top:80px;
-
-  overflow:hidden;
 }
-.headerbody .FTR .bubbles{
+.headerbody .FTR .bubbles {
   position:absolute;
-  top:-80px;
+
+  top:-65px;
   left:0;
   right:0;
-  height:120px;
+
+  height:90px;
+
   overflow:hidden;
+
   background:transparent;
+
   -webkit-filter:url("#blob");
   filter:url("#blob");
+
   pointer-events:none;
+
+  z-index:1;
 }
 .headerbody .FTR .bubbles .bubble {
   position: absolute;
@@ -461,6 +467,7 @@ a {
   transform: translate(-50%, 100%);
 }
 .headerbody .FTR .content {
+  position:relative;
   z-index: 2;
   display: grid;
   grid-template-columns: 1fr auto;
@@ -620,7 +627,7 @@ a {
 .legal {
   display: flex;
   flex-wrap: wrap;
-  color: whitefff;
+  color: white;
 }
 .legal__links {
   display: flex;
