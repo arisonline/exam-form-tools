@@ -25,7 +25,7 @@ body {
   overflow-x: hidden;
 }
 footer {
-  margin-top: 950;
+  margin-top: 950 !important;
 }
 *,
 footer,
