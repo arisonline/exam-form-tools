@@ -847,6 +847,10 @@ HOMEPAGE FINAL FIX
 
 /* FAQ */
 
+.faqs {
+  padding: 25px;
+}
+
 .accordion{
   max-width:96%;
   margin: auto;
