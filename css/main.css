@@ -979,7 +979,6 @@ HOMEPAGE FINAL FIX
 .tool-card p{
   flex:1;
   font-size:20px;
-  line-height:1.8;
 }
 
 .tool-bottom{
@@ -995,7 +994,7 @@ HOMEPAGE FINAL FIX
   text-align:center;
   background:#ff671f;
   color:white !important;
-  padding:15px;
+  padding:14px;
   font-weight:700;
   transition:.3s;
 }
