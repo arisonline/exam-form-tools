@@ -762,6 +762,7 @@ HOMEPAGE FINAL FIX
 
 .category-card ul{
   margin-left:18px;
+  line-height:2;
 }
 
 .category-card li{
@@ -828,6 +829,7 @@ HOMEPAGE FINAL FIX
 
 .step-text{
   font-size:20px;
+  line-height:1.8;
 }
 
 /* DESCRIPTION */
@@ -840,6 +842,7 @@ HOMEPAGE FINAL FIX
 
 .description p{
   font-size:20px;
+  line-height:1.9;
   margin-bottom:16px;
 }
 
@@ -894,8 +897,12 @@ HOMEPAGE FINAL FIX
 
 .accordion-answer{
   display:none;
+
   padding:0 24px 24px;
+
   font-size:20px;
+
+  line-height:1.9;
 }
 
 .accordion-item.active .accordion-answer{
@@ -971,7 +978,8 @@ HOMEPAGE FINAL FIX
 
 .tool-card p{
   flex:1;
-  font-size:20px;
+  font-size:15px;
+  line-height:1.8;
 }
 
 .tool-bottom{
