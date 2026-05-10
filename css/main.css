@@ -24,12 +24,14 @@
 body {
   overflow-x: hidden;
 }
+footer {
+  margin-top: 120;
+}
 *,
 footer,
 footer:after,
 footer:before {
   box-sizing: border-box;
-  margin-top: 40px;
 }
 .footer a,
 .navbar-brand,
