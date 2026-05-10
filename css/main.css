@@ -674,6 +674,12 @@ TOOLS GRID FIX
   flex-direction:column;
 
   height:100%;
+
+  transition:.3s;
+}
+
+.tool-card:hover{
+  transform:translateY(-6px);
 }
 
 .tool-top{
@@ -688,6 +694,7 @@ TOOLS GRID FIX
 }
 
 .tool-card h3{
+
   min-height:70px;
 
   display:flex;
@@ -700,6 +707,7 @@ TOOLS GRID FIX
 }
 
 .tool-card p{
+
   flex:1;
 
   color:#555;
@@ -708,24 +716,10 @@ TOOLS GRID FIX
 }
 
 .tool-bottom{
+
   margin-top:auto;
 
   padding:20px;
   background:#fafafa;
   border-top:1px solid #eee;
-}
-
-.tool-btn{
-  width:100%;
-  display:block;
-  text-align:center;
-  background:#ff671f;
-  color:#fff;
-  padding:14px;
-  font-weight:700;
-  transition:.3s;
-}
-
-.tool-btn:hover{
-  background:#e25a16;
 }
