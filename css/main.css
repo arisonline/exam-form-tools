@@ -25,7 +25,7 @@ body {
   overflow-x: hidden;
 }
 footer {
-  margin-top: 150;
+  margin-top: 250;
 }
 *,
 footer,
@@ -401,17 +401,14 @@ a {
 }
 .section-title {
   font-size: 28px;
-  color: #333;
   margin-bottom: 20px;
 }
 .description p {
   font-size: 20px;
-  color: #333;
   margin-bottom: 16px;
 }
 .how-to-use {
   font-size: 16px;
-  color: #333;
   margin-left: 35px;
 }
 .headerbody {
@@ -739,7 +736,6 @@ HOMEPAGE FINAL FIX
   font-size:28px;
   font-weight:700;
   margin-bottom:20px;
-  color:#333;
 }
 
 /* CATEGORY */
