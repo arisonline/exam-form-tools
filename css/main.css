@@ -25,7 +25,7 @@ body {
   overflow-x: hidden;
 }
 footer {
-  margin-top: 120;
+  margin-top: 150;
 }
 *,
 footer,
@@ -850,10 +850,6 @@ HOMEPAGE FINAL FIX
 }
 
 /* FAQ */
-
-.faqs{
-  margin-bottom:40px;
-}
 
 .accordion{
   max-width:96%;
