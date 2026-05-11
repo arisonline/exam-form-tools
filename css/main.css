@@ -343,10 +343,10 @@ a {
   margin-left: 1.5%;
 }
 .h2o {
-  flex: 60%;
+  flex: 70%;
 }
 .h2oi {
-  flex: 40%;
+  flex: 30%;
   justify-content: center;
   margin: auto;
   font-size: 160px;
