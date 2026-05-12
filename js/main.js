@@ -255,6 +255,224 @@ function resizeCroppedImageCUET(
 
 
 
+
+
+
+
+
+
+/* =========================
+   ACT SIGNATURE
+========================= */
+
+function resizeCroppedSignatureACT(
+  previewId,
+  infoId
+) {
+
+  processResize(
+    previewId,
+    300,
+    80,
+    "act-signature.jpg",
+    infoId,
+    50,
+    null,
+    false
+  );
+}
+
+/* =========================
+   CUET SIGNATURE
+========================= */
+
+function resizeCroppedSignatureCUET(
+  previewId,
+  infoId
+) {
+
+  processResize(
+    previewId,
+    140,
+    60,
+    "cuet-signature.jpg",
+    infoId,
+    50,
+    "candidateNameSign",
+    true
+  );
+}
+
+/* =========================
+   NEET SIGNATURE
+========================= */
+
+function resizeCroppedSignatureNEET(
+  previewId,
+  infoId
+) {
+
+  processResize(
+    previewId,
+    200,
+    80,
+    "neet-signature.jpg",
+    infoId,
+    50,
+    null,
+    false
+  );
+}
+
+/* =========================
+   SSC SIGNATURE
+========================= */
+
+function resizeCroppedSignatureSSC(
+  previewId,
+  infoId
+) {
+
+  processResize(
+    previewId,
+    140,
+    60,
+    "ssc-signature.jpg",
+    infoId,
+    80,
+    null,
+    false
+  );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =========================
+   CUET PDF CERTIFICATE
+========================= */
+
+function resizeCertificatePdfCUET(
+  previewId,
+  infoId
+) {
+
+  const preview =
+    document.getElementById(
+      previewId
+    );
+
+  if (!preview || !preview.src) {
+    alert("No image found.");
+    return;
+  }
+
+  let fileName =
+    "CUET_PWDCERTIFICATE.pdf";
+
+  const input =
+    document.getElementById(
+      "candidateNameCertificate"
+    );
+
+  if (input) {
+
+    const name =
+      input.value.trim();
+
+    if (name.length >= 2) {
+
+      const prefix =
+        name.substring(0, 2)
+        .toUpperCase();
+
+      fileName =
+        prefix +
+        "_PWDCERTIFICATE.pdf";
+    }
+  }
+
+  const img = new Image();
+
+  img.src = preview.src;
+
+  img.onload = function () {
+
+    const canvas =
+      document.createElement(
+        "canvas"
+      );
+
+    canvas.width = img.width;
+    canvas.height = img.height;
+
+    const ctx =
+      canvas.getContext("2d");
+
+    ctx.drawImage(
+      img,
+      0,
+      0
+    );
+
+    const imageData =
+      canvas.toDataURL(
+        "image/jpeg",
+        0.9
+      );
+
+    const { jsPDF } =
+      window.jspdf;
+
+    const pdf =
+      new jsPDF();
+
+    pdf.addImage(
+      imageData,
+      "JPEG",
+      10,
+      10,
+      180,
+      250
+    );
+
+    pdf.save(fileName);
+
+    const info =
+      document.getElementById(
+        infoId
+      );
+
+    if (info) {
+
+      info.innerHTML =
+        `PDF Generated Successfully`;
+
+      info.style.display =
+        "block";
+    }
+  };
+}
+
+
+
+
+
+
+
+
+
+
+
 let cropperPhoto;
 let cropperSignature;
 let cropperThumb;
