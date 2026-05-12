@@ -236,66 +236,55 @@
 
   
 
-  <!-- Cropper Modal -->
   <div class="gg-model">
 
-    <div
-      class="cropper-popup"
-      id="cropperPopupPhoto"
-      style="display:none;"
-    >
 
-      <div class="cropper-popup-content">
-
-        <span
-          class="cropper-popup-close"
-          onclick="
-          hideCropperPopup(
-          'cropperPopupPhoto'
-          )"
-        >
-          &times;
-        </span>
-
-        <h3 class="cropper-popup-heading">
-          Crop Image
-        </h3>
-
-        <div class="img-container">
-
-          <img
-            id="cropperImagePhoto"
-            alt="your image"
-          />
-
-        </div>
-
-        <div class="cropper-popup-buttons">
-
-          <button
-            class="btn crop"
-            onclick="cropImage()"
-          >
-            Crop
-          </button>
-
-          <button
-            class="btn cancel"
-            onclick="
-            hideCropperPopup(
-            'cropperPopupPhoto'
-            )"
-          >
-            Cancel
-          </button>
-
-        </div>
-
+      <!-- Modal for photo Image Cropper -->
+      <div class="cropper-popup" id="cropperPopupPhoto" style="display: none;">
+          <div class="cropper-popup-content">
+              <span class="cropper-popup-close" onclick="hideCropperPopup('cropperPopupPhoto')">&times;</span>
+              <h3 class="cropper-popup-heading">Crop Image</h3>
+              <div class="img-container">
+                  <img id="cropperImagePhoto" alt="your image" />
+              </div>
+              <div class="cropper-popup-buttons">
+                  <button class="btn crop" onclick="cropImage()">Crop</button>
+                  <button class="btn cancel" onclick="hideCropperPopup('cropperPopupPhoto')">Cancel</button>
+              </div>
+          </div>
       </div>
+      
+      <!-- Modal for signature Image Cropper -->
+      <div class="cropper-popup" id="cropperPopupSignature" style="display: none;">
+          <div class="cropper-popup-content">
+              <span class="cropper-popup-close" onclick="hideCropperPopup('cropperPopupSignature')">&times;</span>
+              <h3 class="cropper-popup-heading">Crop Image</h3>
+              <div class="img-container">
+                  <img id="cropperImageSignature" alt="your image" />
+              </div>
+              <div class="cropper-popup-buttons">
+                  <button class="btn crop" onclick="cropImage()">Crop</button>
+                  <button class="btn cancel" onclick="hideCropperPopup('cropperPopupSignature')">Cancel</button>
+              </div>
+          </div>
+      </div>
+      
 
-    </div>
-
-  </div>
+      <div class="cropper-popup" id="cropperPopupThumb" style="display: none;">
+          <div class="cropper-popup-content">
+              <span class="cropper-popup-close" onclick="hideCropperPopup('cropperPopupThumb')">&times;</span>
+              <h3 class="cropper-popup-heading">Crop Image</h3>
+              <div class="img-container">
+                  <img id="cropperImageThumb" alt="your image" />
+              </div>
+              <div class="cropper-popup-buttons">
+                  <button class="btn crop" onclick="cropImage()">Crop</button>
+                  <button class="btn cancel" onclick="hideCropperPopup('cropperPopupThumb')">Cancel</button>
+              </div>
+          </div>
+      </div>
+      
+      </div>
 	
 </div>
 
