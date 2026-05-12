@@ -239,57 +239,63 @@
   <!-- Cropper Modal -->
   <div class="gg-model">
 
-    <!-- UNIVERSAL CROPPER -->
-
-<div
-  class="cropper-popup"
-  id="cropperPopup"
-  style="display:none;"
->
-
-  <div class="cropper-popup-content">
-
-    <span
-      class="cropper-popup-close"
-      onclick="hideCropperPopup()"
+    <div
+      class="cropper-popup"
+      id="cropperPopupPhoto"
+      style="display:none;"
     >
-      &times;
-    </span>
 
-    <h3 class="cropper-popup-heading">
-      Crop Image
-    </h3>
+      <div class="cropper-popup-content">
 
-    <div class="img-container">
+        <span
+          class="cropper-popup-close"
+          onclick="
+          hideCropperPopup(
+          'cropperPopupPhoto'
+          )"
+        >
+          &times;
+        </span>
 
-      <img
-        id="cropperImage"
-        alt="cropper image"
-      />
+        <h3 class="cropper-popup-heading">
+          Crop Image
+        </h3>
 
-    </div>
+        <div class="img-container">
 
-    <div class="cropper-popup-buttons">
+          <img
+            id="cropperImagePhoto"
+            alt="your image"
+          />
 
-      <button
-        class="btn crop"
-        onclick="cropImage()"
-      >
-        Crop
-      </button>
+        </div>
 
-      <button
-        class="btn cancel"
-        onclick="hideCropperPopup()"
-      >
-        Cancel
-      </button>
+        <div class="cropper-popup-buttons">
+
+          <button
+            class="btn crop"
+            onclick="cropImage()"
+          >
+            Crop
+          </button>
+
+          <button
+            class="btn cancel"
+            onclick="
+            hideCropperPopup(
+            'cropperPopupPhoto'
+            )"
+          >
+            Cancel
+          </button>
+
+        </div>
+
+      </div>
 
     </div>
 
   </div>
-
-</div>
 	
 </div>
 
