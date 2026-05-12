@@ -173,18 +173,10 @@ function processResize(
     const finalData =
       padData(best, targetBytes);
 
-    const link =
-      document.createElement("a");
-
-    link.href = finalData;
-
-    link.download = fileName;
-
-    document.body.appendChild(link);
-
-    link.click();
-
-    document.body.removeChild(link);
+   triggerDownload(
+    finalData,
+    fileName
+  );
 
     const sizeKB =
       Math.round(
@@ -475,9 +467,8 @@ function resizeCertificatePdfCUET(
 
 
 
-
 /* =========================================
-   UNIVERSAL CROPPER SYSTEM
+   GLOBALS
 ========================================= */
 
 let activeCropper = null;
@@ -487,7 +478,39 @@ let activePopupId = "";
 let activeLogoId = "";
 
 /* =========================================
-   OPEN CROPPER
+   SAFE DOWNLOAD
+========================================= */
+
+function triggerDownload(
+  dataUrl,
+  fileName
+) {
+
+  const link =
+    document.createElement("a");
+
+  link.href = dataUrl;
+
+  link.download =
+    fileName;
+
+  document.body.appendChild(
+    link
+  );
+
+  setTimeout(() => {
+
+    link.click();
+
+    document.body.removeChild(
+      link
+    );
+
+  }, 100);
+}
+
+/* =========================================
+   UNIVERSAL CROPPER
 ========================================= */
 
 function showCropperPopup(
@@ -497,7 +520,9 @@ function showCropperPopup(
 ) {
 
   const input =
-    document.getElementById(inputId);
+    document.getElementById(
+      inputId
+    );
 
   if (
     !input ||
@@ -511,47 +536,30 @@ function showCropperPopup(
   activePopupId =
     popupId;
 
-  /* =====================================
-     AUTO DETECT IMAGE ELEMENT
-  ===================================== */
+  const cropperImageId =
+    popupId.replace(
+      "Popup",
+      "Image"
+    );
 
-  let cropperImageId =
-    popupId
-      .replace(
-        "Popup",
-        "Image"
-      );
-
-  /* fallback */
-
-  let cropperImage =
+  const cropperImage =
     document.getElementById(
       cropperImageId
     );
 
   if (!cropperImage) {
 
-    cropperImage =
-      document.querySelector(
-        `#${popupId} img`
-      );
-  }
-
-  if (!cropperImage) {
     console.error(
-      "Cropper image not found."
+      "Cropper image missing"
     );
+
     return;
   }
 
-  /* =====================================
-     AUTO DETECT LOGO
-  ===================================== */
-
   if (
     previewId
-      .toLowerCase()
-      .includes("photo")
+    .toLowerCase()
+    .includes("photo")
   ) {
 
     activeLogoId =
@@ -559,39 +567,25 @@ function showCropperPopup(
 
   } else if (
     previewId
-      .toLowerCase()
-      .includes("signature")
+    .toLowerCase()
+    .includes("signature")
   ) {
 
     activeLogoId =
       "demoManLogoSignature";
 
-  } else if (
-    previewId
-      .toLowerCase()
-      .includes("thumb")
-  ) {
-
-    activeLogoId =
-      "demoManLogoThumb";
-
-  } else if (
-    previewId
-      .toLowerCase()
-      .includes("certificate")
-  ) {
-
-    activeLogoId =
-      "demoManLogoThumb";
-
   } else {
 
-    activeLogoId = "";
+    activeLogoId =
+      "demoManLogoThumb";
   }
 
-  /* =====================================
-     LOAD IMAGE
-  ===================================== */
+  if (activeCropper) {
+
+    activeCropper.destroy();
+
+    activeCropper = null;
+  }
 
   const reader =
     new FileReader();
@@ -610,16 +604,14 @@ function showCropperPopup(
     popup.style.display =
       "flex";
 
-    if (activeCropper) {
-      activeCropper.destroy();
-    }
-
     activeCropper =
       new Cropper(
         cropperImage,
         {
           aspectRatio: NaN,
-          viewMode: 1
+          viewMode: 1,
+          autoCropArea: 1,
+          responsive: true
         }
       );
   };
@@ -630,7 +622,7 @@ function showCropperPopup(
 }
 
 /* =========================================
-   CLOSE CROPPER
+   HIDE POPUP
 ========================================= */
 
 function hideCropperPopup(
@@ -643,6 +635,7 @@ function hideCropperPopup(
     );
 
   if (popup) {
+
     popup.style.display =
       "none";
   }
@@ -668,26 +661,28 @@ function cropImage() {
     activeCropper
     .getCroppedCanvas();
 
-  if (!canvas) return;
+  if (!canvas)
+    return;
 
   const dataUrl =
-    canvas.toDataURL();
+    canvas.toDataURL(
+      "image/jpeg",
+      1
+    );
 
   const preview =
     document.getElementById(
       activePreviewId
     );
 
-  if (!preview) return;
+  if (!preview)
+    return;
 
-  preview.src = dataUrl;
+  preview.src =
+    dataUrl;
 
   preview.style.display =
     "block";
-
-  /* =====================================
-     HIDE DEMO LOGO
-  ===================================== */
 
   if (activeLogoId) {
 
@@ -697,6 +692,7 @@ function cropImage() {
       );
 
     if (logo) {
+
       logo.style.display =
         "none";
     }
