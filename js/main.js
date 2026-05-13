@@ -177,6 +177,22 @@ function resizeCroppedImage(
   targetKB = 100
 ) {
 
+  let candidateInputId = null;
+
+  /*
+    Optional input support
+  */
+
+  if (
+    document.getElementById(
+      "candidateNamePhoto"
+    )
+  ) {
+
+    candidateInputId =
+      "candidateNamePhoto";
+  }
+
   processResize(
     previewId,
     width,
@@ -184,8 +200,8 @@ function resizeCroppedImage(
     fileName,
     infoId,
     targetKB,
-    null,
-    false
+    candidateInputId,
+    candidateInputId ? true : false
   );
 }
 
@@ -241,6 +257,7 @@ function resizeCroppedThumb(
 
 
 
+
 function resizeCertificatePdf(
   previewId,
   width,
@@ -260,6 +277,33 @@ function resizeCertificatePdf(
     alert("No image found.");
 
     return;
+  }
+
+  /*
+    Optional custom name
+  */
+
+  const input =
+    document.getElementById(
+      "candidateNameCertificate"
+    );
+
+  if (input) {
+
+    const name =
+      input.value.trim();
+
+    if (name.length >= 2) {
+
+      const prefix =
+        name
+        .substring(0, 2)
+        .toUpperCase();
+
+      fileName =
+        prefix +
+        "_CERTIFICATE.pdf";
+    }
   }
 
   const img = new Image();
@@ -326,7 +370,6 @@ function resizeCertificatePdf(
     }
   };
 }
-
 
 
 
