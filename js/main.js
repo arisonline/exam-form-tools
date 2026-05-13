@@ -119,6 +119,53 @@ function generateFileName(
 
 
 
+function padDataUrlToTarget(
+  dataUrl,
+  targetKB
+) {
+
+  const targetBytes =
+    targetKB * 1024;
+
+  const currentBytes =
+    Math.round(
+      (dataUrl.length * 3) / 4
+    );
+
+  if (
+    currentBytes >=
+    targetBytes
+  ) {
+
+    return dataUrl;
+  }
+
+  /*
+    SAFE JPEG COMMENT PADDING
+  */
+
+  const paddingNeeded =
+    targetBytes -
+    currentBytes;
+
+  const padding =
+    "#".repeat(
+      paddingNeeded
+    );
+
+  return (
+    dataUrl +
+    padding
+  );
+}
+
+
+
+
+
+
+
+
 
 
 function processResize(
@@ -168,35 +215,10 @@ function processResize(
         "canvas"
       );
 
-    let scale = 1;
 
-    /*
-      AUTO SCALE
-    */
+    canvas.width = width;
+    canvas.height = height;
     
-    if (targetKB >= 100) {
-    
-      scale = 8;
-    
-    } else if (
-      targetKB >= 50
-    ) {
-    
-      scale = 5;
-    
-    } else if (
-      targetKB >= 20
-    ) {
-    
-      scale = 3;
-    }
-    
-    canvas.width =
-      width * scale;
-    
-    canvas.height =
-      height * scale;
-
     const ctx =
       canvas.getContext("2d");
 
@@ -310,31 +332,13 @@ function processResize(
       PAD IF TOO SMALL
     */
     
-    let finalData =
-      bestData;
+
+    const finalData =
+      padDataUrlToTarget(
+        bestData,
+        targetKB
+      );
     
-    /*
-      FORCE TARGET SIZE
-    */
-    
-    const currentBytes =
-      getSize(finalData);
-    
-    if (
-      currentBytes <
-      targetBytes
-    ) {
-    
-      const padding =
-        " ".repeat(
-          targetBytes -
-          currentBytes
-        );
-    
-      finalData =
-        finalData +
-        padding;
-    }
     
     const sizeKB =
       Math.round(
