@@ -84,95 +84,19 @@ function processResize(
       height
     );
 
-    const targetBytes =
-      targetKB * 1024;
-
-    function getSize(dataUrl) {
-
-      return Math.round(
-        dataUrl.length * 3 / 4
-      );
-    }
-
-    function padData(
-      dataUrl,
-      targetSize
-    ) {
-
-      const current =
-        getSize(dataUrl);
-
-      const diff =
-        targetSize - current;
-
-      if (diff <= 0)
-        return dataUrl;
-
-      const parts =
-        dataUrl.split(",");
-
-      const header = parts[0];
-
-      const base64 =
-        parts[1].replace(
-          /=+$/,
-          ""
-        );
-
-      const padding =
-        "A".repeat(
-          Math.ceil(diff * 4 / 3)
-        );
-
-      return (
-        header +
-        "," +
-        base64 +
-        padding
-      );
-    }
-
-    let min = 0.1;
-    let max = 1;
-
-    let best = "";
-    let bestDiff = Infinity;
-
-    for (let i = 0; i < 10; i++) {
-
-      const quality =
-        (min + max) / 2;
-
-      const data =
-        canvas.toDataURL(
-          "image/jpeg",
-          quality
-        );
-
-      const size =
-        getSize(data);
-
-      const diff =
-        Math.abs(
-          size - targetBytes
-        );
-
-      if (diff < bestDiff) {
-
-        bestDiff = diff;
-        best = data;
-      }
-
-      if (size > targetBytes) {
-        max = quality;
-      } else {
-        min = quality;
-      }
-    }
-
-    const finalData =
-      padData(best, targetBytes);
-
+   const finalData =
+    canvas.toDataURL(
+      "image/jpeg",
+      0.9
+    );
+  
+  const sizeKB =
+    Math.round(
+      (
+        finalData.length * 3 / 4
+      ) / 1024
+    ); 
+    
    triggerDownload(
     finalData,
     fileName
@@ -290,7 +214,91 @@ function resizeCroppedThumb(
 
 
 
+function resizeCertificatePdf(
+  previewId,
+  width,
+  height,
+  fileName,
+  infoId,
+  targetKB = 200
+) {
 
+  const preview =
+    document.getElementById(
+      previewId
+    );
+
+  if (!preview || !preview.src) {
+
+    alert("No image found.");
+
+    return;
+  }
+
+  const img = new Image();
+
+  img.src = preview.src;
+
+  img.onload = function () {
+
+    const canvas =
+      document.createElement(
+        "canvas"
+      );
+
+    canvas.width = width;
+
+    canvas.height = height;
+
+    const ctx =
+      canvas.getContext("2d");
+
+    ctx.drawImage(
+      img,
+      0,
+      0,
+      width,
+      height
+    );
+
+    const imageData =
+      canvas.toDataURL(
+        "image/jpeg",
+        0.9
+      );
+
+    const { jsPDF } =
+      window.jspdf;
+
+    const pdf =
+      new jsPDF();
+
+    pdf.addImage(
+      imageData,
+      "JPEG",
+      10,
+      10,
+      100,
+      130
+    );
+
+    pdf.save(fileName);
+
+    const info =
+      document.getElementById(
+        infoId
+      );
+
+    if (info) {
+
+      info.innerHTML =
+        "PDF Generated";
+
+      info.style.display =
+        "block";
+    }
+  };
+}
 
 
 
@@ -382,11 +390,47 @@ function showCropperPopup(
   activePopupId =
     popupId;
 
-  const cropperImageId =
-    popupId.replace(
-      "Popup",
-      "Image"
-    );
+  let cropperImageId = "";
+
+    if (
+      popupId ===
+      "cropperPopupPhoto"
+    ) {
+    
+      cropperImageId =
+        "cropperImagePhoto";
+    
+    }
+    
+    else if (
+      popupId ===
+      "cropperPopupSignature"
+    ) {
+    
+      cropperImageId =
+        "cropperImageSignature";
+    
+    }
+    
+    else if (
+      popupId ===
+      "cropperPopupCertificate"
+    ) {
+    
+      cropperImageId =
+        "cropperImageCertificate";
+    
+    }
+    
+    else if (
+      popupId ===
+      "cropperPopupThumb"
+    ) {
+    
+      cropperImageId =
+        "cropperImageThumb";
+    
+    }
 
   const cropperImage =
     document.getElementById(
@@ -439,8 +483,8 @@ function showCropperPopup(
   reader.onload =
     function (e) {
 
-    cropperImage.src =
-      e.target.result;
+    cropperImage.onload =
+  function () {
 
     const popup =
       document.getElementById(
@@ -460,6 +504,10 @@ function showCropperPopup(
           responsive: true
         }
       );
+  };
+
+cropperImage.src =
+  e.target.result;
   };
 
   reader.readAsDataURL(
