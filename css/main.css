@@ -157,7 +157,7 @@ a {
 #thumbPreview,
 #CertificatePreview,
 .custom-file-input {
-  display: none !important;
+  display: none;
 }
 #photoPreview.visible,
 #signaturePreview.visible,
