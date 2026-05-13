@@ -47,8 +47,39 @@ function processResize(
           ? ".png"
           : ".jpg";
 
-        fileName =
-          prefix + "_PHOTO" + ext;
+        if (
+          fileName
+          .toLowerCase()
+          .includes("signature")
+        ) {
+        
+          fileName =
+            prefix +
+            "_SIGNATURE" +
+            ext;
+        
+        }
+        
+        else if (
+          fileName
+          .toLowerCase()
+          .includes("certificate")
+        ) {
+        
+          fileName =
+            prefix +
+            "_CERTIFICATE" +
+            ext;
+        
+        }
+        
+        else {
+        
+          fileName =
+            prefix +
+            "_PHOTO" +
+            ext;
+        }
       }
     }
   }
