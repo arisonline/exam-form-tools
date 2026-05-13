@@ -717,6 +717,12 @@ async function resizeCertificatePdf(
       });
 
     /*
+      LOAD PDF LIB
+    */
+    
+    await loadPdfLib();
+
+    /*
       PDF
     */
 
@@ -1159,4 +1165,27 @@ function cropImage() {
   hideCropperPopup(
     activePopupId
   );
+}
+
+
+
+
+
+
+async function loadPdfLib() {
+
+  if (window.jspdf)
+    return;
+
+  const script =
+    document.createElement("script");
+
+  script.src =
+    "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js";
+
+  document.body.appendChild(script);
+
+  await new Promise(resolve => {
+    script.onload = resolve;
+  });
 }
