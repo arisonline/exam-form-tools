@@ -1,3 +1,126 @@
+function generateFileName(
+  originalFileName,
+  candidateInputId = null
+) {
+
+  /*
+    DEFAULT NAME
+  */
+
+  let finalName =
+    originalFileName;
+
+  /*
+    NO INPUT FIELD
+  */
+
+  if (!candidateInputId)
+    return finalName;
+
+  const input =
+    document.getElementById(
+      candidateInputId
+    );
+
+  /*
+    INPUT NOT FOUND
+  */
+
+  if (!input)
+    return finalName;
+
+  const name =
+    input.value.trim();
+
+  /*
+    EMPTY INPUT
+  */
+
+  if (name.length < 2)
+    return finalName;
+
+  /*
+    PREFIX
+  */
+
+  const prefix =
+    name
+    .substring(0, 2)
+    .toUpperCase();
+
+  /*
+    EXTENSION
+  */
+
+  let ext = ".jpg";
+
+  if (
+    originalFileName
+    .toLowerCase()
+    .includes(".png")
+  ) {
+
+    ext = ".png";
+
+  } else if (
+    originalFileName
+    .toLowerCase()
+    .includes(".pdf")
+  ) {
+
+    ext = ".pdf";
+  }
+
+  /*
+    TYPE
+  */
+
+  let type =
+    "PHOTO";
+
+  if (
+    originalFileName
+    .toLowerCase()
+    .includes("signature")
+  ) {
+
+    type =
+      "SIGNATURE";
+
+  } else if (
+    originalFileName
+    .toLowerCase()
+    .includes("thumb")
+  ) {
+
+    type =
+      "THUMB";
+
+  } else if (
+    originalFileName
+    .toLowerCase()
+    .includes("certificate")
+  ) {
+
+    type =
+      "CERTIFICATE";
+  }
+
+  return (
+    prefix +
+    "_" +
+    type +
+    ext
+  );
+}
+
+
+
+
+
+
+
+
 function processResize(
   previewId,
   width,
@@ -20,70 +143,14 @@ function processResize(
   /* =========================
      CUSTOM FILE NAME
   ========================= */
-
-  if (
-    useNamePrefix &&
-    candidateInputId
-  ) {
-
-    const input =
-      document.getElementById(
-        candidateInputId
-      );
-
-    if (input) {
-
-      const name =
-        input.value.trim();
-
-      if (name.length >= 2) {
-
-        const prefix =
-          name.substring(0, 2)
-          .toUpperCase();
-
-        const ext =
-          fileName.includes(".png")
-          ? ".png"
-          : ".jpg";
-
-        if (
-          fileName
-          .toLowerCase()
-          .includes("signature")
-        ) {
-        
-          fileName =
-            prefix +
-            "_SIGNATURE" +
-            ext;
-        
-        }
-        
-        else if (
-          fileName
-          .toLowerCase()
-          .includes("certificate")
-        ) {
-        
-          fileName =
-            prefix +
-            "_CERTIFICATE" +
-            ext;
-        
-        }
-        
-        else {
-        
-          fileName =
-            prefix +
-            "_PHOTO" +
-            ext;
-        }
-      }
-    }
-  }
-
+  fileName =
+  generateFileName(
+    fileName,
+    useNamePrefix
+      ? candidateInputId
+      : null
+  );
+  
   /* =========================
      LOAD IMAGE
   ========================= */
@@ -288,29 +355,13 @@ async function resizeCertificatePdf(
     OPTIONAL CUSTOM NAME
   */
 
-  const input =
-    document.getElementById(
-      "candidateNameCertificate"
-    );
-
-  if (input) {
-
-    const name =
-      input.value.trim();
-
-    if (name.length >= 2) {
-
-      const prefix =
-        name
-        .substring(0, 2)
-        .toUpperCase();
-
-      fileName =
-        prefix +
-        "_CERTIFICATE.pdf";
-    }
-  }
-
+  fileName =
+  generateFileName(
+    fileName,
+    "candidateNameCertificate"
+  );
+  
+  
   const img =
     new Image();
 
