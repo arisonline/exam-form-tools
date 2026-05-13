@@ -333,7 +333,7 @@ function resizeCertificatePdf(
       HIGH QUALITY
     */
 
-    const scale = 3;
+    const scale = 1.2;
 
     canvas.width =
       img.width * scale;
@@ -370,8 +370,8 @@ function resizeCertificatePdf(
 
     const imageData =
       canvas.toDataURL(
-        "image/png",
-        1
+        "image/jpeg",
+        0.85
       );
 
     const { jsPDF } =
@@ -453,7 +453,7 @@ function resizeCertificatePdf(
 
     pdf.addImage(
       imageData,
-      "PNG",
+      "JPEG",
       x,
       y,
       pdfWidth,
