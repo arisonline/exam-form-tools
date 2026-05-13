@@ -334,23 +334,27 @@ function resizeCertificatePdf(
 
     const imageData =
       canvas.toDataURL(
-        "image/jpeg",
-        0.9
-      );
+        "image/png",
+        1
+    );
 
     const { jsPDF } =
       window.jspdf;
 
     const pdf =
-      new jsPDF();
+      new jsPDF({
+        orientation: "portrait",
+        unit: "px",
+        format: [width, height]
+      });
 
     pdf.addImage(
       imageData,
-      "JPEG",
-      10,
-      10,
-      100,
-      130
+      "PNG",
+      0,
+      0,
+      width,
+      height
     );
 
     pdf.save(fileName);
@@ -410,27 +414,35 @@ function triggerDownload(
   fileName
 ) {
 
-  const link =
-    document.createElement("a");
+  fetch(dataUrl)
+    .then(res => res.blob())
+    .then(blob => {
 
-  link.href = dataUrl;
+      const blobUrl =
+        URL.createObjectURL(blob);
 
-  link.download =
-    fileName;
+      const link =
+        document.createElement("a");
 
-  document.body.appendChild(
-    link
-  );
+      link.href = blobUrl;
 
-  setTimeout(() => {
+      link.download =
+        fileName;
 
-    link.click();
+      document.body.appendChild(
+        link
+      );
 
-    document.body.removeChild(
-      link
-    );
+      link.click();
 
-  }, 100);
+      document.body.removeChild(
+        link
+      );
+
+      URL.revokeObjectURL(
+        blobUrl
+      );
+    });
 }
 
 /* =========================================
@@ -608,6 +620,10 @@ function hideCropperPopup(
 
     activeCropper = null;
   }
+
+  activePreviewId = "";
+  activePopupId = "";
+  activeLogoId = "";
 }
 
 /* =========================================
