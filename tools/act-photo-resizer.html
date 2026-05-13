@@ -122,175 +122,182 @@
     Image resizer for ACT test
   </div>
 
-  <!-- Upload Section -->
-  <div class="d-flex">
 
-    <div class="container-fluid">
 
-      <div class="has-shadow">
 
-        <div class="row1">
 
-          <!-- Left -->
-          <div class="col1">
 
-            <div class="txt-center">
-
-              <div class="border-bottom">
-                <h4 style="font-weight:600;">
-                  Photo
-                </h4>
+	  <div class="d-flex">
+      <div class="container-fluid">
+          <div class="has-shadow">
+              <div class="row1">
+                  <div class="col1">
+                      <div class="txt-center">
+                          <div class="border-bottom">
+                              <h4 style="font-weight: 600;">Photo</h4>
+                          </div>
+                          <div class="my-mb">
+                              <label class="btn-fp" for="photoInput">Upload</label>
+                              <input class="custom-file-input" type="file" id="photoInput" accept="image/*" onchange="showCropperPopup('photoInput', 'photoPreview', 'cropperPopupPhoto')">
+                          </div>
+                          <div class="my-mb">
+                              <a class="btn-fp" download="" id="down2" onclick="resizeCroppedImage('photoPreview', 480, 640, 'resized_photo.jpg', 'photoInfo', 100)">Download</a>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col2">
+                      <div class="m-rslt">
+                          <!-- Replace the image source with the demo man logo -->
+                          <div class="demo-man-logo" id="demoManLogoPhoto">
+                              <i class="fas fa-user"></i>
+                          </div>
+                          <img class="pics" id="photoPreview" src="" alt="Chania">
+                          <div class="text-center mt-2 bg-white" style="color: black; width: 175px; text-align: center;" id="photoInfo">
+                              <div class="image-info"></div>
+                          </div>
+                      </div>
+                  </div>
               </div>
-
-              <div class="my-mb">
-
-                <label
-                  class="btn-fp"
-                  for="photoInput"
-                >
-                  Upload
-                </label>
-
-                <input
-                  class="custom-file-input"
-                  type="file"
-                  id="photoInput"
-                  accept="image/*"
-                  onchange="
-                  showCropperPopup(
-                  'photoInput',
-                  'photoPreview',
-                  'cropperPopupPhoto'
-                  )"
-                />
-
-              </div>
-
-              <div class="my-mb">
-
-                <a
-                  class="btn-fp"
-                  download=""
-                  onclick="
-					resizeCroppedImageACT(
-					'photoPreview',
-					'photoInfo'
-				  )"
-                >
-                  Download
-                </a>
-
-              </div>
-
-            </div>
-
           </div>
+      </div>
+    
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7651988041020088"
+     crossorigin="anonymous"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-7651988041020088"
+     data-ad-slot="5182032463"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<!--
+      <div class="container-fluid">
+          <div class="has-shadow">
+              <div class="row1">
+                  <div class="col1">
+                      <div class="txt-center">
+                          <div class="border-bottom">
+                              <h4 style="font-weight: 600;">Signature</h4>
+                          </div>
+                          <div class="my-mb">
+                              <label class="btn-fp" for="signatureInput">Upload</label>
+                              <input class="custom-file-input" type="file" id="signatureInput" accept="image/*" onchange="showCropperPopup('signatureInput', 'signaturePreview', 'cropperPopupSignature')">
+                          </div>
+                          <div class="my-mb">
+                              <a class="btn-fp" download="" id="down2" onclick="resizeCroppedSignature('signaturePreview', 140, 60, 'resized_signature.jpg', 'signatureInfo')">Download</a>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col2">
+                      <div class="m-rslt">
 
-          <!-- Right -->
-          <div class="col2">
-
-            <div class="m-rslt">
-
-              <div
-                class="demo-man-logo"
-                id="demoManLogoPhoto"
-              >
-                <i class="fas fa-user"></i>
+                          <div class="demo-man-logo" id="demoManLogoSignature">
+                              <i class="fas fa-signature" style="font-size: 90px;"></i>
+                          </div>
+                          <img class="pics" id="signaturePreview" src="" alt="Chania">
+                          <div class="text-center mt-2 bg-white" style="color: black; width: 175px; text-align: center;" id="signatureInfo">
+                              <div class="image-info"></div>
+                          </div>
+                      </div>
+                  </div>
               </div>
-
-              <img
-                class="pics"
-                id="photoPreview"
-                src=""
-                alt="Preview"
-              />
-
-              <div
-                class="text-center mt-2 bg-white"
-                style="
-                color:black;
-                width:175px;
-                text-align:center;
-                "
-                id="photoInfo"
-              >
-                <div class="image-info"></div>
-              </div>
-
-            </div>
-
           </div>
-
-        </div>
-
       </div>
 
-    </div>
+      <div class="container-fluid">
+          <div class="has-shadow">
+              <div class="row1">
+                  <div class="col1">
+                      <div class="txt-center">
+                          <div class="border-bottom">
+                              <h4 style="font-weight: 600;">Thumb</h4>
+                          </div>
+                          <div class="my-mb">
+                              <label class="btn-fp" for="thumbInput">Upload</label>
+                              <input class="custom-file-input" type="file" id="thumbInput" accept="image/*" onchange="showCropperPopup('thumbInput', 'thumbPreview', 'cropperPopupThumb')">
+                          </div>
+                          <div class="my-mb">
+                              <a class="btn-fp" download="" id="down2" onclick="resizeCroppedThumb('thumbPreview', 200, 300, 'resized_thumb.jpg', 'thumbInfo')">Download</a>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col2">
+                      <div class="m-rslt">
+
+                          <div class="demo-man-logo" id="demoManLogoThumb">
+                              <i class="fas fa-fingerprint" style="font-size: 100px;"></i>
+                          </div>
+                          <img class="pics" id="thumbPreview" src="" alt="Chania">
+                          <div class="text-center mt-2 bg-white" style="color: black; width: 175px; text-align: center;" id="thumbInfo">
+                              <div class="image-info"></div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
 
   </div>
+-->
 
-  <!-- Cropper Modal -->
+
   <div class="gg-model">
 
-    <div
-      class="cropper-popup"
-      id="cropperPopupPhoto"
-      style="display:none;"
-    >
 
-      <div class="cropper-popup-content">
-
-        <span
-          class="cropper-popup-close"
-          onclick="
-          hideCropperPopup(
-          'cropperPopupPhoto'
-          )"
-        >
-          &times;
-        </span>
-
-        <h3 class="cropper-popup-heading">
-          Crop Image
-        </h3>
-
-        <div class="img-container">
-
-          <img
-            id="cropperImagePhoto"
-            alt="your image"
-          />
-
-        </div>
-
-        <div class="cropper-popup-buttons">
-
-          <button
-            class="btn crop"
-            onclick="cropImage()"
-          >
-            Crop
-          </button>
-
-          <button
-            class="btn cancel"
-            onclick="
-            hideCropperPopup(
-            'cropperPopupPhoto'
-            )"
-          >
-            Cancel
-          </button>
-
-        </div>
-
+      <!-- Modal for photo Image Cropper -->
+      <div class="cropper-popup" id="cropperPopupPhoto" style="display: none;">
+          <div class="cropper-popup-content">
+              <span class="cropper-popup-close" onclick="hideCropperPopup('cropperPopupPhoto')">&times;</span>
+              <h3 class="cropper-popup-heading">Crop Image</h3>
+              <div class="img-container">
+                  <img id="cropperImagePhoto" alt="your image" />
+              </div>
+              <div class="cropper-popup-buttons">
+                  <button class="btn crop" onclick="cropImage()">Crop</button>
+                  <button class="btn cancel" onclick="hideCropperPopup('cropperPopupPhoto')">Cancel</button>
+              </div>
+          </div>
       </div>
+      
+      <!-- Modal for signature Image Cropper 
+      <div class="cropper-popup" id="cropperPopupSignature" style="display: none;">
+          <div class="cropper-popup-content">
+              <span class="cropper-popup-close" onclick="hideCropperPopup('cropperPopupSignature')">&times;</span>
+              <h3 class="cropper-popup-heading">Crop Image</h3>
+              <div class="img-container">
+                  <img id="cropperImageSignature" alt="your image" />
+              </div>
+              <div class="cropper-popup-buttons">
+                  <button class="btn crop" onclick="cropImage()">Crop</button>
+                  <button class="btn cancel" onclick="hideCropperPopup('cropperPopupSignature')">Cancel</button>
+              </div>
+          </div>
+      </div>
+      
 
-    </div>
-
-  </div>
-
+      <div class="cropper-popup" id="cropperPopupThumb" style="display: none;">
+          <div class="cropper-popup-content">
+              <span class="cropper-popup-close" onclick="hideCropperPopup('cropperPopupThumb')">&times;</span>
+              <h3 class="cropper-popup-heading">Crop Image</h3>
+              <div class="img-container">
+                  <img id="cropperImageThumb" alt="your image" />
+              </div>
+              <div class="cropper-popup-buttons">
+                  <button class="btn crop" onclick="cropImage()">Crop</button>
+                  <button class="btn cancel" onclick="hideCropperPopup('cropperPopupThumb')">Cancel</button>
+              </div>
+          </div>
+      </div>-->
+      
+      </div>
 </div>
+
+
+
+
+	
 
 <!-- How To -->
 <div class="idn">
