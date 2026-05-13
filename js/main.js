@@ -402,21 +402,7 @@ function processResize(
     
 
 
-    const info =
-      document.getElementById(
-        infoId
-      );
-
-    if (info) {
-
-      info.innerHTML =
-        `Width: ${width}px<br>
-         Height: ${height}px<br>
-         Size: ${sizeKB} KB`;
-
-      info.style.display =
-        "block";
-    }
+    
   };
 }
 
