@@ -272,15 +272,20 @@ function resizeCertificatePdf(
       previewId
     );
 
-  if (!preview || !preview.src) {
+  if (
+    !preview ||
+    !preview.src
+  ) {
 
-    alert("No image found.");
+    alert(
+      "No image found."
+    );
 
     return;
   }
 
   /*
-    Optional custom name
+    OPTIONAL NAME
   */
 
   const input =
@@ -306,58 +311,168 @@ function resizeCertificatePdf(
     }
   }
 
-  const img = new Image();
+  const img =
+    new Image();
 
-  img.src = preview.src;
+  img.src =
+    preview.src;
 
-  img.onload = function () {
+  img.onload =
+    function () {
+
+    /*
+      HD CANVAS
+    */
 
     const canvas =
       document.createElement(
         "canvas"
       );
 
-    canvas.width = width;
+    /*
+      HIGH QUALITY
+    */
 
-    canvas.height = height;
+    const scale = 3;
+
+    canvas.width =
+      img.width * scale;
+
+    canvas.height =
+      img.height * scale;
 
     const ctx =
-      canvas.getContext("2d");
+      canvas.getContext(
+        "2d"
+      );
+
+    ctx.fillStyle =
+      "#ffffff";
+
+    ctx.fillRect(
+      0,
+      0,
+      canvas.width,
+      canvas.height
+    );
 
     ctx.drawImage(
       img,
       0,
       0,
-      width,
-      height
+      canvas.width,
+      canvas.height
     );
+
+    /*
+      PNG = SHARP
+    */
 
     const imageData =
       canvas.toDataURL(
         "image/png",
         1
-    );
+      );
 
     const { jsPDF } =
       window.jspdf;
 
+    /*
+      REAL A4
+    */
+
     const pdf =
       new jsPDF({
-        orientation: "portrait",
-        unit: "px",
-        format: [width, height]
+        orientation:
+          "portrait",
+        unit: "mm",
+        format: "a4",
+        compress: true
       });
+
+    /*
+      A4 SIZE
+    */
+
+    const pageWidth =
+      210;
+
+    const pageHeight =
+      297;
+
+    /*
+      IMAGE RATIO
+    */
+
+    const ratio =
+      canvas.width /
+      canvas.height;
+
+    let pdfWidth =
+      pageWidth;
+
+    let pdfHeight =
+      pdfWidth / ratio;
+
+    /*
+      FULL PAGE FIT
+    */
+
+    if (
+      pdfHeight >
+      pageHeight
+    ) {
+
+      pdfHeight =
+        pageHeight;
+
+      pdfWidth =
+        pdfHeight *
+        ratio;
+    }
+
+    /*
+      CENTER
+    */
+
+    const x =
+      (
+        pageWidth -
+        pdfWidth
+      ) / 2;
+
+    const y =
+      (
+        pageHeight -
+        pdfHeight
+      ) / 2;
+
+    /*
+      ADD IMAGE
+    */
 
     pdf.addImage(
       imageData,
       "PNG",
-      0,
-      0,
-      width,
-      height
+      x,
+      y,
+      pdfWidth,
+      pdfHeight,
+      undefined,
+      "FAST"
     );
 
-    pdf.save(fileName);
+    /*
+      SAVE
+    */
+
+    pdf.save(
+      fileName
+    );
+
+    /*
+      INFO
+    */
 
     const info =
       document.getElementById(
@@ -374,7 +489,6 @@ function resizeCertificatePdf(
     }
   };
 }
-
 
 
 
