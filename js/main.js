@@ -1197,6 +1197,7 @@ async function loadPdfLib() {
 
 
 
+
 let cropperLoaded = false;
 
 async function loadCropper() {
@@ -1204,28 +1205,76 @@ async function loadCropper() {
   if (cropperLoaded)
     return;
 
+  /*
+    LOAD CSS
+  */
+
   await new Promise((resolve) => {
+
+    const existingCss =
+      document.querySelector(
+        'link[data-cropper]'
+      );
+
+    if (existingCss) {
+
+      resolve();
+
+      return;
+    }
 
     const css =
       document.createElement("link");
 
-    css.rel = "stylesheet";
+    css.rel =
+      "stylesheet";
 
     css.href =
       "https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.css";
 
-    document.head.appendChild(css);
+    css.setAttribute(
+      "data-cropper",
+      "true"
+    );
+
+    css.onload =
+      resolve;
+
+    document.head.appendChild(
+      css
+    );
+  });
+
+  /*
+    LOAD JS
+  */
+
+  await new Promise((resolve) => {
+
+    if (
+      typeof Cropper !==
+      "undefined"
+    ) {
+
+      resolve();
+
+      return;
+    }
 
     const script =
-      document.createElement("script");
+      document.createElement(
+        "script"
+      );
 
     script.src =
       "https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.js";
 
-    script.onload = resolve;
+    script.onload =
+      resolve;
 
-    document.body.appendChild(script);
-
+    document.body.appendChild(
+      script
+    );
   });
 
   cropperLoaded = true;
