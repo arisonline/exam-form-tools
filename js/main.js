@@ -168,10 +168,28 @@ function processResize(
         "canvas"
       );
 
-    const scale =
-      targetKB > 50
-      ? 3
-      : 1;
+    let scale = 1;
+
+    /*
+      AUTO SCALE
+    */
+    
+    if (targetKB >= 100) {
+    
+      scale = 8;
+    
+    } else if (
+      targetKB >= 50
+    ) {
+    
+      scale = 5;
+    
+    } else if (
+      targetKB >= 20
+    ) {
+    
+      scale = 3;
+    }
     
     canvas.width =
       width * scale;
@@ -292,8 +310,31 @@ function processResize(
       PAD IF TOO SMALL
     */
     
-    const finalData =
+    let finalData =
       bestData;
+    
+    /*
+      FORCE TARGET SIZE
+    */
+    
+    const currentBytes =
+      getSize(finalData);
+    
+    if (
+      currentBytes <
+      targetBytes
+    ) {
+    
+      const padding =
+        " ".repeat(
+          targetBytes -
+          currentBytes
+        );
+    
+      finalData =
+        finalData +
+        padding;
+    }
     
     const sizeKB =
       Math.round(
