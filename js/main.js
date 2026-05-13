@@ -182,23 +182,155 @@ function processResize(
       height
     );
 
-   const finalData =
-    canvas.toDataURL(
-      "image/jpeg",
-      0.9
-    );
-  
-  const sizeKB =
-    Math.round(
-      (
-        finalData.length * 3 / 4
-      ) / 1024
-    ); 
+
+
+    const targetBytes =
+      targetKB * 1024;
     
-   triggerDownload(
-    finalData,
-    fileName
-  );
+    /*
+      GET SIZE
+    */
+    
+    function getSize(
+      dataUrl
+    ) {
+    
+      return Math.round(
+        (
+          dataUrl.length * 3
+        ) / 4
+      );
+    }
+    
+    /*
+      PAD SMALL FILES
+    */
+    
+    function padData(
+      dataUrl,
+      targetBytes
+    ) {
+    
+      const currentBytes =
+        getSize(dataUrl);
+    
+      if (
+        currentBytes >=
+        targetBytes
+      ) {
+    
+        return dataUrl;
+      }
+    
+      const diff =
+        targetBytes -
+        currentBytes;
+    
+      return (
+        dataUrl +
+        "A".repeat(diff)
+      );
+    }
+    
+    /*
+      BINARY SEARCH
+    */
+    
+    let minQuality =
+      0.1;
+    
+    let maxQuality =
+      1;
+    
+    let bestData =
+      "";
+    
+    let bestDiff =
+      Infinity;
+    
+    for (
+      let i = 0;
+      i < 10;
+      i++
+    ) {
+    
+      const quality =
+        (
+          minQuality +
+          maxQuality
+        ) / 2;
+    
+      const testData =
+        canvas.toDataURL(
+          "image/jpeg",
+          quality
+        );
+    
+      const size =
+        getSize(
+          testData
+        );
+    
+      const diff =
+        Math.abs(
+          size -
+          targetBytes
+        );
+    
+      if (
+        diff <
+        bestDiff
+      ) {
+    
+        bestDiff =
+          diff;
+    
+        bestData =
+          testData;
+      }
+    
+      if (
+        size >
+        targetBytes
+      ) {
+    
+        maxQuality =
+          quality;
+    
+      } else {
+    
+        minQuality =
+          quality;
+      }
+    }
+    
+    /*
+      PAD IF TOO SMALL
+    */
+    
+    const finalData =
+      padData(
+        bestData,
+        targetBytes
+      );
+    
+    const sizeKB =
+      Math.round(
+        getSize(
+          finalData
+        ) / 1024
+      );
+    
+    /*
+      DOWNLOAD
+    */
+    
+    triggerDownload(
+      finalData,
+      fileName
+    );
+
+    
 
 
     const info =
