@@ -352,6 +352,9 @@ a {
   font-size: 160px;
   color: #06038d;
 }
+.h2oi svg {
+  font-size: 250px;
+}
 .how-to-step {
   display: flex;
   align-items: center;
