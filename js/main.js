@@ -119,45 +119,6 @@ function generateFileName(
 
 
 
-function padDataUrlToTarget(
-  dataUrl,
-  targetKB
-) {
-
-  const targetBytes =
-    targetKB * 1024;
-
-  const currentBytes =
-    Math.round(
-      (dataUrl.length * 3) / 4
-    );
-
-  if (
-    currentBytes >=
-    targetBytes
-  ) {
-
-    return dataUrl;
-  }
-
-  /*
-    SAFE JPEG COMMENT PADDING
-  */
-
-  const paddingNeeded =
-    targetBytes -
-    currentBytes;
-
-  const padding =
-    "#".repeat(
-      paddingNeeded
-    );
-
-  return (
-    dataUrl +
-    padding
-  );
-}
 
 
 
@@ -333,29 +294,111 @@ function processResize(
     */
     
 
-    const finalData =
-      padDataUrlToTarget(
-        bestData,
-        targetKB
-      );
-    
-    
-    const sizeKB =
-      Math.round(
-        getSize(
-          finalData
-        ) / 1024
-      );
-    
-    /*
-      DOWNLOAD
-    */
-    
-    triggerDownload(
-      finalData,
-      fileName
-    );
-
+    fetch(bestData)
+      .then(res => res.blob())
+      .then(blob => {
+      
+        const currentBytes =
+          blob.size;
+      
+        /*
+          REAL PADDING
+        */
+      
+        let finalBlob = blob;
+      
+        if (
+          currentBytes <
+          targetBytes
+        ) {
+      
+          const paddingSize =
+            targetBytes -
+            currentBytes;
+      
+          const padding =
+            new Uint8Array(
+              paddingSize
+            );
+      
+          finalBlob =
+            new Blob(
+              [
+                blob,
+                padding
+              ],
+              {
+                type:
+                  "image/jpeg"
+              }
+            );
+        }
+      
+        /*
+          REAL SIZE
+        */
+      
+        const sizeKB =
+          Math.round(
+            finalBlob.size /
+            1024
+          );
+      
+        /*
+          DOWNLOAD
+        */
+      
+        const blobUrl =
+          URL.createObjectURL(
+            finalBlob
+          );
+      
+        const link =
+          document.createElement(
+            "a"
+          );
+      
+        link.href =
+          blobUrl;
+      
+        link.download =
+          fileName;
+      
+        document.body.appendChild(
+          link
+        );
+      
+        link.click();
+      
+        document.body.removeChild(
+          link
+        );
+      
+        URL.revokeObjectURL(
+          blobUrl
+        );
+      
+        /*
+          INFO
+        */
+      
+        const info =
+          document.getElementById(
+            infoId
+          );
+      
+        if (info) {
+      
+          info.innerHTML =
+            `Width: ${width}px<br>
+             Height: ${height}px<br>
+             Size: ${sizeKB} KB`;
+      
+          info.style.display =
+            "block";
+        }
+      
+      });
     
 
 
