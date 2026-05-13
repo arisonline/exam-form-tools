@@ -168,8 +168,16 @@ function processResize(
         "canvas"
       );
 
-    canvas.width = width;
-    canvas.height = height;
+    const scale =
+      targetKB > 50
+      ? 3
+      : 1;
+    
+    canvas.width =
+      width * scale;
+    
+    canvas.height =
+      height * scale;
 
     const ctx =
       canvas.getContext("2d");
@@ -178,8 +186,8 @@ function processResize(
       img,
       0,
       0,
-      width,
-      height
+      canvas.width,
+      canvas.height
     );
 
 
@@ -206,31 +214,7 @@ function processResize(
       PAD SMALL FILES
     */
     
-    function padData(
-      dataUrl,
-      targetBytes
-    ) {
     
-      const currentBytes =
-        getSize(dataUrl);
-    
-      if (
-        currentBytes >=
-        targetBytes
-      ) {
-    
-        return dataUrl;
-      }
-    
-      const diff =
-        targetBytes -
-        currentBytes;
-    
-      return (
-        dataUrl +
-        "A".repeat(diff)
-      );
-    }
     
     /*
       BINARY SEARCH
@@ -309,10 +293,7 @@ function processResize(
     */
     
     const finalData =
-      padData(
-        bestData,
-        targetBytes
-      );
+      bestData;
     
     const sizeKB =
       Math.round(
