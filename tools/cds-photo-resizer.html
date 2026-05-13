@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>CUET Form Image Resizer</title>
+
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.css"
+  />
+  
+  <link
+  rel="stylesheet"
+  href="../css/main.css"
+  />
+  
+  <link
+  rel="stylesheet"
+  href="../css/others.css"
+  />
+  
+</head>
+
+<body>
+
+<div class="mni">
+
+  <!-- Header -->
+  <div id="header"></div>
+
+  <!-- Heading -->
+  <div class="heading-container">
+    <div class="change-form">
+      <div class="change-form-menu">
+
+        Choose Form:
+
+        <select
+          id="formDropdown"
+          onchange="changeForm()"
+        >
+          <option value="" disabled>
+            Select a form
+          </option>
+
+          <option value="CUET" selected>
+            CUET Form
+          </option>
+
+          <option value="aipmt">
+            AIPMT Form
+          </option>
+
+          <option value="cds">
+            CDS Form
+          </option>
+
+          <option value="du">
+            DU Form
+          </option>
+
+          <option value="gate">
+            GATE Form
+          </option>
+
+          <option value="ipucet">
+            IPU CET Form
+          </option>
+
+          <option value="jeemain">
+            JEE MAIN Form
+          </option>
+
+          <option value="neet">
+            NEET Form
+          </option>
+
+          <option value="nda">
+            NDA Form
+          </option>
+
+          <option value="sat">
+            SAT Form
+          </option>
+
+          <option value="ssc">
+            SSC Form
+          </option>
+
+          <option value="ugcnet">
+            UGC NET Form
+          </option>
+        </select>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="heading-text">
+    Image resizer for CUET test
+  </div>
+
+  <!-- Upload Section -->
+  <div class="d-flex">
+      <div class="container-fluid">
+          <div class="has-shadow">
+              <div class="row1">
+                  <div class="col1">
+                      <div class="txt-center">
+                          <div class="border-bottom">
+                              <h4 style="font-weight: 600;">Photo</h4>
+                          </div>
+                          <div class="my-mb">
+                              <label class="btn-fp" for="photoInput">Upload</label>
+                              <input class="custom-file-input" type="file" id="photoInput" accept="image/*" onchange="showCropperPopup('photoInput', 'photoPreview', 'cropperPopupPhoto')">
+                          </div>
+                          <div class="my-mb">
+                              <input type="text" id="candidateNamePhoto" placeholder="First Name">
+                          </div>
+                          <div class="my-mb">
+                              <a class="btn-fp" download="" id="down2" onclick="resizeCroppedImage('photoPreview', 100, 130, 'resized_photo.jpg', 'photoInfo', 100)">Download</a>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col2">
+                      <div class="m-rslt">
+                          <!-- Replace the image source with the demo man logo -->
+                          <div class="demo-man-logo" id="demoManLogoPhoto">
+							  <svg
+								  xmlns="http://www.w3.org/2000/svg"
+								  viewBox="0 0 640 640"
+								  width="120"
+								  height="120"
+								  fill="currentColor"
+								>
+								  <!-- Rounded Head -->
+								  <circle
+								    cx="320"
+								    cy="180"
+								    r="115"
+								  />
+								
+								  <!-- Slightly Wider Rounded Body -->
+								  <path
+								    d="
+								      M195 350
+								      C135 350 85 400 85 470
+								      L85 520
+								
+								      C85 570 120 600 175 600
+								      L465 600
+								
+								      C520 600 555 570 555 520
+								      L555 470
+								
+								      C555 400 505 350 445 350
+								      Z
+								    "
+								  />
+								</svg>
+                          </div>
+                          <img class="pics" id="photoPreview" src="" alt="Photo-preview">
+                          <div class="text-center mt-2 bg-white" style="color: black; width: 175px; text-align: center;" id="photoInfo">
+                              <div class="image-info"></div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <div class="container-fluid">
+          <div class="has-shadow">
+              <div class="row1">
+                  <div class="col1">
+                      <div class="txt-center">
+                          <div class="border-bottom">
+                              <h4 style="font-weight: 600;">Signature</h4>
+                          </div>
+                          <div class="my-mb">
+                              <label class="btn-fp" for="signatureInput">Upload</label>
+                              <input class="custom-file-input" type="file" id="signatureInput" accept="image/*" onchange="showCropperPopup('signatureInput', 'signaturePreview', 'cropperPopupSignature')">
+                          </div>
+                          <div class="my-mb">
+                              <input type="text" id="candidateNameSign" placeholder="First Name">
+                          </div>
+                          <div class="my-mb">
+                              <a class="btn-fp" download="" id="down2" onclick="resizeCroppedSignature('signaturePreview', 140, 60, 'resized_signature.jpg', 'signatureInfo', 80)">Download</a>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col2">
+                      <div class="m-rslt">
+
+                          <div class="demo-man-logo" id="demoManLogoSignature">
+                              <svg
+								  xmlns="http://www.w3.org/2000/svg"
+								  viewBox="0 0 900 320"
+								  width="260"
+								  height="110"
+								  fill="none"
+								>
+								  <path
+									d="
+									  M55 95
+								
+									  C95 55, 140 35, 170 60
+									  C205 88, 190 140, 150 220
+								
+									  L120 280
+								
+									  C112 295, 125 305, 138 292
+								
+									  L310 125
+								
+									  C350 88, 390 88, 402 122
+								
+									  C414 154, 390 198, 402 225
+								
+									  C414 252, 455 255, 510 235
+								
+									  C570 212, 640 170, 700 160
+								
+									  C760 150, 815 158, 870 176
+									"
+									stroke="#FF6A1A"
+									stroke-width="68"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								  />
+								
+								  <path
+									d="
+									  M700 160
+									  C760 158, 815 165, 875 176
+									"
+									stroke="#FF6A1A"
+									stroke-width="26"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								  />
+								</svg>
+                          </div>
+                          <img class="pics" id="signaturePreview" src="" alt="Signature-preview">
+                          <div class="text-center mt-2 bg-white" style="color: black; width: 175px; text-align: center;" id="signatureInfo">
+                              <div class="image-info"></div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <div class="container-fluid">
+          <div class="has-shadow">
+              <div class="row1">
+                  <div class="col1">
+                      <div class="txt-center">
+                          <div class="border-bottom">
+                              <h4 style="font-weight: 600;">PwD/PwBD/UDID Certificate</h4>
+                          </div>
+                          <div class="my-mb">
+                              <label class="btn-fp" for="CertificateInput">Upload</label>
+                              <input class="custom-file-input" type="file" id="CertificateInput" accept="image/*" onchange="showCropperPopup('CertificateInput', 'CertificatePreview', 'cropperPopupCertificate')">
+                          </div>
+                          <div class="my-mb">
+                              <input type="text" id="candidateNameCertificate" placeholder="First Name">
+                          </div>
+                          <div class="my-mb">
+                              <a class="btn-fp" download="" id="down2" onclick="resizeCertificatePdf('CertificatePreview', 100, 130, 'CertificatePdf.pdf', 'CertificatePdf', 200)">Download</a>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col2">
+                      <div class="m-rslt">
+
+                          <div class="demo-man-logo" id="demoManLogoThumb">
+                              <svg
+								  xmlns="http://www.w3.org/2000/svg"
+								  viewBox="0 0 384 512"
+								  width="120"
+								  height="120"
+								  fill="currentColor"
+								>
+								  <path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zM64 72c0-4.42 3.58-8 8-8h80c4.42 0 8 3.58 8 8v16c0 4.42-3.58 8-8 8H72c-4.42 0-8-3.58-8-8V72zm0 64c0-4.42 3.58-8 8-8h80c4.42 0 8 3.58 8 8v16c0 4.42-3.58 8-8 8H72c-4.42 0-8-3.58-8-8v-16zm192.81 248H304c8.84 0 16 7.16 16 16s-7.16 16-16 16h-47.19c-16.45 0-31.27-9.14-38.64-23.86-2.95-5.92-8.09-6.52-10.17-6.52s-7.22.59-10.02 6.19l-7.67 15.34a15.986 15.986 0 0 1-14.31 8.84c-.38 0-.75-.02-1.14-.05-6.45-.45-12-4.75-14.03-10.89L144 354.59l-10.61 31.88c-5.89 17.66-22.38 29.53-41 29.53H80c-8.84 0-16-7.16-16-16s7.16-16 16-16h12.39c4.83 0 9.11-3.08 10.64-7.66l18.19-54.64c3.3-9.81 12.44-16.41 22.78-16.41s19.48 6.59 22.77 16.41l13.88 41.64c19.77-16.19 54.05-9.7 66 14.16 2.02 4.06 5.96 6.5 10.16 6.5zM377 105L279.1 7c-4.5-4.5-10.6-7-17-7H256v128h128v-6.1c0-6.3-2.5-12.4-7-16.9z"/>
+								</svg>
+                          </div>
+                          <img class="pics" id="CertificatePreview" src="" alt="Certificate-preview">
+                          <div class="text-center mt-2 bg-white" style="color: black; width: 175px; text-align: center;" id="CertificatePdf">
+                              <div class="image-info"></div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+  </div>
+  
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7651988041020088"
+     crossorigin="anonymous"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-7651988041020088"
+     data-ad-slot="5182032463"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+
+  <div class="gg-model">
+
+
+      <!-- Modal for photo Image Cropper -->
+      <div class="cropper-popup" id="cropperPopupPhoto" style="display: none;">
+          <div class="cropper-popup-content">
+              <span class="cropper-popup-close" onclick="hideCropperPopup('cropperPopupPhoto')">&times;</span>
+              <h3 class="cropper-popup-heading">Crop Image</h3>
+              <div class="img-container">
+                  <img id="cropperImagePhoto" alt="your image" />
+              </div>
+              <div class="cropper-popup-buttons">
+                  <button class="btn crop" onclick="cropImage()">Crop</button>
+                  <button class="btn cancel" onclick="hideCropperPopup('cropperPopupPhoto')">Cancel</button>
+              </div>
+          </div>
+      </div>
+      
+      <!-- Modal for signature Image Cropper -->
+      <div class="cropper-popup" id="cropperPopupSignature" style="display: none;">
+          <div class="cropper-popup-content">
+              <span class="cropper-popup-close" onclick="hideCropperPopup('cropperPopupSignature')">&times;</span>
+              <h3 class="cropper-popup-heading">Crop Image</h3>
+              <div class="img-container">
+                  <img id="cropperImageSignature" alt="your image" />
+              </div>
+              <div class="cropper-popup-buttons">
+                  <button class="btn crop" onclick="cropImage()">Crop</button>
+                  <button class="btn cancel" onclick="hideCropperPopup('cropperPopupSignature')">Cancel</button>
+              </div>
+          </div>
+      </div>
+      
+      <!-- Modal for thumb Image Cropper -->
+      <div class="cropper-popup" id="cropperPopupCertificate" style="display: none;">
+          <div class="cropper-popup-content">
+              <span class="cropper-popup-close" onclick="hideCropperPopup('cropperPopupCertificate')">&times;</span>
+              <h3 class="cropper-popup-heading">Crop Image</h3>
+              <div class="img-container">
+                  <img id="cropperImageCertificate" alt="your image" />
+              </div>
+              <div class="cropper-popup-buttons">
+                  <button class="btn crop" onclick="cropImage()">Crop</button>
+                  <button class="btn cancel" onclick="hideCropperPopup('cropperPopupCertificate')">Cancel</button>
+              </div>
+          </div>
+      </div>
+      
+      </div>
+</div>
+
+
+
+
+	
+
+
+	
+
+<!-- How To -->
+<div class="idn">
+
+  <hr
+    style="
+    background-color:#06038D;
+    color:#06038D;
+    height:10px;
+    "
+  />
+
+  <section class="how-to-resize">
+
+    <div class="h2o">
+
+      <h2 class="section-title">
+        How to Resize CDS Form Images Online?
+      </h2>
+
+      <div class="how-to-step">
+        <div class="step-icon">1</div>
+
+        <div class="step-text">
+          Upload your photo, signature, or thumb for resize.
+        </div>
+      </div>
+
+      <div class="how-to-step">
+        <div class="step-icon">2</div>
+
+        <div class="step-text">
+          Adjust the image height and width settings according to your cropping needs.
+        </div>
+      </div>
+
+      <div class="how-to-step">
+        <div class="step-icon">3</div>
+
+        <div class="step-text">
+          Then click the crop button.
+        </div>
+      </div>
+
+      <div class="how-to-step">
+        <div class="step-icon">4</div>
+
+        <div class="step-text">
+          Click on the download button and download the resized image.
+        </div>
+      </div>
+
+    </div>
+
+    <div class="h2oi">
+      <svg
+		  xmlns="http://www.w3.org/2000/svg"
+		  viewBox="0 -960 960 960"
+		  width="120"
+		  height="120"
+		  fill="currentColor"
+		>
+		  <path d="m344-60-76-128-144-32 14-148-98-112 98-112-14-148 144-32 76-128 136 58 136-58 76 128 144 32-14 148 98 112-98 112 14 148-144 32-76 128-136-58-136 58Zm34-102 102-44 104 44 56-96 110-26-10-112 74-84-74-86 10-112-110-24-58-96-102 44-104-44-56 96-110 24 10 112-74 86 74 84-10 114 110 24 58 96Zm60-176 226-226-56-58-170 170-86-84-56 56 142 142Z"/>
+	  </svg>
+    </div>
+
+  </section>
+
+
+  
+  <div class="description">
+    <h1 class="section-title">What is CDS exam?</h1>
+    <p>The Combined Defence Services Examination (CDS) is a standardised test conducted annually by the Union Public Service Commission (UPSC).</p>
+    <p>CDS examination in India is a recruitment exam to select candidates for various courses in the Indian Military Academy (IMA), Indian Naval Academy (INA), Air Force Academy (AFA), and Officers Training Academy (OTA).</p>
+
+    <h2 class="section-title">Basics tips for CDS Exam Photo Requirements</h2>
+    <p>Resolution of the scanned photograph should be between 550x550 pixels (minimum) and 1000x1000 pixels (maximum).</p>
+    <p>Signature dimensions should be a minimum of 350 pixels (Width) X 350 pixels (Height) and a maximum of 550 pixels (Width) X 550 pixels (Height).</p>
+    <p>The candidate's appearance in the photo (e.g., beard, spectacles, hairstyle) must match their actual appearance on the day of the exam.</p>
+    <p>Candidate's name and the date the photograph was taken must be clearly printed or handwritten on the back of the photo.</p>
+    <p>Photographs cannot be enhanced in any way. For example: no lenses, no dark glasses, filters, etc..</p>
+
+        <h3 class="section-title">Photo format and sizes for CDS examination</h3>     
+
+          <div class="wrapper">
+
+            <section class="columns-0">
+                
+                <div class="column-0">
+                    
+                    <ul class="how-to-use">
+                        <li>Scanned photo should be in JPG format only.</li>
+                        <li>Face should take up at least 3/4 of the photograph's space, ensuring a clear and recognizable image.</li>
+                        <li>Photograph must not be older than 10 days from the start of the online application process.</li>
+                        <li>The file size should be between 20 KB and 300 KB.</li>
+                    </ul>
+                </div>
+                
+            </section>
+          
+          </div>
+
+
+        <!-- <h3 class="section-title">Signature upload guidelines for CUET form</h3>     
+
+          <div class="wrapper">
+
+            <section class="columns-0">
+                
+                <div class="column-0">
+                    
+                    <ul class="how-to-use">
+                        <li>The signature should be done using a black pen on white paper.</li>
+                        <li>Size of the scanned signature must be between 10 KB to 50 KB.</li>
+                        <li>The photo must be in JPG or JPEG format.</li>
+                        <li>The signature file should be named as ‘first two characters of candidate name'. For example, if a candidate’s name is Arindam, the file name should be ‘AR_SIGNATURE’.</li>
+                        <li>Ensure the signature image have sufficient resolution to be clearly visible (not be hazy, pixelated, or distorted).</li>
+                    </ul>
+                </div>
+                
+            </section>
+          
+          </div>
+
+
+
+        <h3 class="section-title">CUET form PwD/PwBD/UDID certificate upload guidelines</h3>     
+
+          <div class="wrapper">
+
+            <section class="columns-0">
+                
+                <div class="column-0">
+                    
+                    <ul class="how-to-use">
+                        <li>If applicable, the file should be named as ‘first two characters of name'. For example, if a candidate’s name is Arindam, the file name should be ‘AR_PWDCERTIFICATE’.</li>
+                        <li>Size of the Certificate should be between 50 KB to 300 KB.</li>
+                        <li>The file format should be in PDF format.</li>
+                    </ul>
+                </div>
+                
+            </section>
+          
+        </div> -->
+  </div>
+    
+    
+        <div class="faqs">
+            <h3 class="section-title">FAQ's related to CDS exam</h3>
+
+            <div class="accordion">
+                <div class="accordion-item">
+                  <div class="accordion-question">
+                    <h4>What is the purpose of the CDS exam?</h4>
+                    <span class="accordion-icon">+</span>
+                  </div>
+                  <div class="accordion-answer">
+                    <p>The Combined Defence Services (CDS) Examination is conducted to recruit candidates for various commissioned officer positions within the Indian Army, Navy, and Air Force.</p>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <div class="accordion-question">
+                    <h4>Who is eligible for CDS exam?</h4>
+                    <span class="accordion-icon">+</span>
+                  </div>
+                  <div class="accordion-answer">
+                    <p>To be eligible for the CDS (Combined Defence Services) exam, candidates must be permanently settled in India, a graduate or in their final year of graduation, and meet specific age and physical standards.</p>
+                    <p>Women candidates are eligible for Officers Training Academy (OTA). A minimum age limit of 19 years applies, with upper age limits varying depending on the academy (e.g., 24 for IMA, INA, and AFA).</p>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <div class="accordion-question">
+                    <h4>Is maths compulsory for CDS?</h4>
+                    <span class="accordion-icon">+</span>
+                  </div>
+                  <div class="accordion-answer">
+                    <p>No, maths is not compulsory for all candidates in the CDS exam.</p>
+                    <p>The requirement for the maths paper depends on the specific academy a candidate chooses as their first preference.</p>
+                    <p>For the Officers' Training Academy (OTA), a maths paper is not required.</p>
+                    <p>However, it is mandatory for the Indian Military Academy (IMA), Indian Naval Academy (INA), and the Air Force Academy (AFA).</p>
+                  </div>
+                </div>
+                
+              </div>
+        </div>
+  </div>
+    
+
+<!-- partial:index.partial.html -->
+
+
+
+
+  <div id="footer"></div>
+
+
+	
+
+
+
+<!-- JS -->
+<script defer src="../js/include.js"></script>
+
+<!-- Your Main JS -->
+<script defer src="../js/main.js"></script>
+
+<!-- Accordion -->
+<script defer src="../js/accordion.js"></script>
+
+</body>
+</html>
