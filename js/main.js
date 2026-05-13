@@ -402,7 +402,21 @@ function processResize(
     
 
 
-    
+    const info =
+      document.getElementById(
+        infoId
+      );
+
+    if (info) {
+
+      info.innerHTML =
+        `Width: ${width}px<br>
+         Height: ${height}px<br>
+         Size: ${sizeKB} KB`;
+
+      info.style.display =
+        "block";
+    }
   };
 }
 
@@ -921,7 +935,7 @@ function triggerDownload(
    UNIVERSAL CROPPER
 ========================================= */
 
-async function showCropperPopup(
+function showCropperPopup(
   inputId,
   previewId,
   popupId
@@ -937,8 +951,6 @@ async function showCropperPopup(
     !input.files ||
     !input.files[0]
   ) return;
-
-  await loadCropper();
 
   activePreviewId =
     previewId;
@@ -1176,92 +1188,4 @@ async function loadPdfLib() {
   await new Promise(resolve => {
     script.onload = resolve;
   });
-}
-
-
-
-
-
-
-
-let cropperLoaded = false;
-
-async function loadCropper() {
-
-  if (cropperLoaded)
-    return;
-
-  /*
-    LOAD CSS
-  */
-
-  await new Promise((resolve) => {
-
-    const existingCss =
-      document.querySelector(
-        'link[data-cropper]'
-      );
-
-    if (existingCss) {
-
-      resolve();
-
-      return;
-    }
-
-    const css =
-      document.createElement("link");
-
-    css.rel =
-      "stylesheet";
-
-    css.href =
-      "https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.css";
-
-    css.setAttribute(
-      "data-cropper",
-      "true"
-    );
-
-    css.onload =
-      resolve;
-
-    document.head.appendChild(
-      css
-    );
-  });
-
-  /*
-    LOAD JS
-  */
-
-  await new Promise((resolve) => {
-
-    if (
-      typeof Cropper !==
-      "undefined"
-    ) {
-
-      resolve();
-
-      return;
-    }
-
-    const script =
-      document.createElement(
-        "script"
-      );
-
-    script.src =
-      "https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.js";
-
-    script.onload =
-      resolve;
-
-    document.body.appendChild(
-      script
-    );
-  });
-
-  cropperLoaded = true;
 }
