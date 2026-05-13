@@ -805,12 +805,8 @@ HOW TO SECTION
 
 .step-text{
   flex:1;
-
-  font-size:22px;
-
+  font-size:20px;
   line-height:1.8;
-
-  color:#111;
 }
 
 /* MOBILE */
@@ -1054,7 +1050,7 @@ HOW TO SECTION
   .description p,
   .step-text,
   .accordion-answer{
-    font-size:16px;
+    font-size:17px;
   }
 
   .accordion-question h4{
