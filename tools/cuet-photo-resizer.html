@@ -140,7 +140,7 @@
                               <input type="text" id="candidateNamePhoto" placeholder="First Name">
                           </div>
                           <div class="my-mb">
-                              <a class="btn-fp" download="" id="down2" onclick="resizeCroppedImageCUET('photoPreview','photoInfo')">Download</a>
+                              <a class="btn-fp" download="" id="down2" onclick="resizeCroppedImage('photoPreview', 100, 130, 'resized_photo.jpg', 'photoInfo', 100)">Download</a>
                           </div>
                       </div>
                   </div>
@@ -176,7 +176,7 @@
                               <input type="text" id="candidateNameSign" placeholder="First Name">
                           </div>
                           <div class="my-mb">
-                              <a class="btn-fp" download="" id="down2" onclick="resizeCroppedSignatureCUET('signaturePreview', 140, 60, 'resized_signature.jpg', 'signatureInfo', 80)">Download</a>
+                              <a class="btn-fp" download="" id="down2" onclick="resizeCroppedSignature('signaturePreview', 140, 60, 'resized_signature.jpg', 'signatureInfo', 80)">Download</a>
                           </div>
                       </div>
                   </div>
@@ -212,7 +212,7 @@
                               <input type="text" id="candidateNameCertificate" placeholder="First Name">
                           </div>
                           <div class="my-mb">
-                              <a class="btn-fp" download="" id="down2" onclick="resizeCertificatePdfCUET('CertificatePreview', 100, 130, 'CertificatePdf.pdf', 'CertificatePdf', 200)">Download</a>
+                              <a class="btn-fp" download="" id="down2" onclick="resizeCertificatePdf('CertificatePreview', 100, 130, 'CertificatePdf.pdf', 'CertificatePdf', 200)">Download</a>
                           </div>
                       </div>
                   </div>
@@ -233,8 +233,20 @@
       </div>
 
   </div>
-
   
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7651988041020088"
+     crossorigin="anonymous"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-7651988041020088"
+     data-ad-slot="5182032463"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
 
   <div class="gg-model">
 
@@ -268,9 +280,8 @@
               </div>
           </div>
       </div>
-
-
-	  <!-- Modal for thumb Image Cropper -->
+      
+      <!-- Modal for thumb Image Cropper -->
       <div class="cropper-popup" id="cropperPopupCertificate" style="display: none;">
           <div class="cropper-popup-content">
               <span class="cropper-popup-close" onclick="hideCropperPopup('cropperPopupCertificate')">&times;</span>
@@ -285,25 +296,16 @@
           </div>
       </div>
       
-
-      <div class="cropper-popup" id="cropperPopupThumb" style="display: none;">
-          <div class="cropper-popup-content">
-              <span class="cropper-popup-close" onclick="hideCropperPopup('cropperPopupThumb')">&times;</span>
-              <h3 class="cropper-popup-heading">Crop Image</h3>
-              <div class="img-container">
-                  <img id="cropperImageThumb" alt="your image" />
-              </div>
-              <div class="cropper-popup-buttons">
-                  <button class="btn crop" onclick="cropImage()">Crop</button>
-                  <button class="btn cancel" onclick="hideCropperPopup('cropperPopupThumb')">Cancel</button>
-              </div>
-          </div>
       </div>
-      
-      </div>
-	
 </div>
 
+
+
+
+	
+
+
+	
 
 <!-- How To -->
 <div class="idn">
