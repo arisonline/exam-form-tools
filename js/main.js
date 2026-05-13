@@ -935,7 +935,7 @@ function triggerDownload(
    UNIVERSAL CROPPER
 ========================================= */
 
-function showCropperPopup(
+async function showCropperPopup(
   inputId,
   previewId,
   popupId
@@ -951,6 +951,8 @@ function showCropperPopup(
     !input.files ||
     !input.files[0]
   ) return;
+
+  await loadCropper();
 
   activePreviewId =
     previewId;
@@ -1188,4 +1190,43 @@ async function loadPdfLib() {
   await new Promise(resolve => {
     script.onload = resolve;
   });
+}
+
+
+
+
+
+
+let cropperLoaded = false;
+
+async function loadCropper() {
+
+  if (cropperLoaded)
+    return;
+
+  await new Promise((resolve) => {
+
+    const css =
+      document.createElement("link");
+
+    css.rel = "stylesheet";
+
+    css.href =
+      "https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.css";
+
+    document.head.appendChild(css);
+
+    const script =
+      document.createElement("script");
+
+    script.src =
+      "https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.js";
+
+    script.onload = resolve;
+
+    document.body.appendChild(script);
+
+  });
+
+  cropperLoaded = true;
 }
