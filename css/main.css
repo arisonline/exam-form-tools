@@ -640,6 +640,13 @@ a {
   }
 }
 
+#candidateNamePhoto, #candidateNameSign, #candidateNameCertificate {
+    width: 100px;
+    height: 29px;
+    text-align: center;
+    border-color: #ff671f;
+}
+
 
 
 
