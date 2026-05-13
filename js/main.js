@@ -258,7 +258,7 @@ function resizeCroppedThumb(
 
 
 
-function resizeCertificatePdf(
+async function resizeCertificatePdf(
   previewId,
   width,
   height,
@@ -285,7 +285,7 @@ function resizeCertificatePdf(
   }
 
   /*
-    OPTIONAL NAME
+    OPTIONAL CUSTOM NAME
   */
 
   const input =
@@ -318,22 +318,18 @@ function resizeCertificatePdf(
     preview.src;
 
   img.onload =
-    function () {
+    async function () {
 
     /*
-      HD CANVAS
+      HIGH QUALITY CANVAS
     */
+
+    const scale = 1.5;
 
     const canvas =
       document.createElement(
         "canvas"
       );
-
-    /*
-      HIGH QUALITY
-    */
-
-    const scale = 1.2;
 
     canvas.width =
       img.width * scale;
@@ -365,21 +361,115 @@ function resizeCertificatePdf(
     );
 
     /*
-      PNG = SHARP
+      TARGET SIZE
     */
 
-    const imageData =
-      canvas.toDataURL(
-        "image/jpeg",
-        0.85
-      );
+    const targetBytes =
+      targetKB * 1024;
+
+    /*
+      BINARY SEARCH
+    */
+
+    let minQuality =
+      0.2;
+
+    let maxQuality =
+      1;
+
+    let bestBlob =
+      null;
+
+    let bestDiff =
+      Infinity;
+
+    for (
+      let i = 0;
+      i < 8;
+      i++
+    ) {
+
+      const quality =
+        (
+          minQuality +
+          maxQuality
+        ) / 2;
+
+      const blob =
+        await new Promise(
+          resolve => {
+
+          canvas.toBlob(
+            resolve,
+            "image/jpeg",
+            quality
+          );
+        });
+
+      const size =
+        blob.size;
+
+      const diff =
+        Math.abs(
+          size -
+          targetBytes
+        );
+
+      if (
+        diff <
+        bestDiff
+      ) {
+
+        bestDiff =
+          diff;
+
+        bestBlob =
+          blob;
+      }
+
+      if (
+        size >
+        targetBytes
+      ) {
+
+        maxQuality =
+          quality;
+
+      } else {
+
+        minQuality =
+          quality;
+      }
+    }
+
+    /*
+      FINAL IMAGE
+    */
+
+    const finalImage =
+      await new Promise(
+        resolve => {
+
+        const reader =
+          new FileReader();
+
+        reader.onload =
+          () =>
+          resolve(
+            reader.result
+          );
+
+        reader.readAsDataURL(
+          bestBlob
+        );
+      });
+
+    /*
+      PDF
+    */
 
     const { jsPDF } =
       window.jspdf;
-
-    /*
-      REAL A4
-    */
 
     const pdf =
       new jsPDF({
@@ -390,19 +480,11 @@ function resizeCertificatePdf(
         compress: true
       });
 
-    /*
-      A4 SIZE
-    */
-
     const pageWidth =
       210;
 
     const pageHeight =
       297;
-
-    /*
-      IMAGE RATIO
-    */
 
     const ratio =
       canvas.width /
@@ -413,10 +495,6 @@ function resizeCertificatePdf(
 
     let pdfHeight =
       pdfWidth / ratio;
-
-    /*
-      FULL PAGE FIT
-    */
 
     if (
       pdfHeight >
@@ -431,10 +509,6 @@ function resizeCertificatePdf(
         ratio;
     }
 
-    /*
-      CENTER
-    */
-
     const x =
       (
         pageWidth -
@@ -447,12 +521,8 @@ function resizeCertificatePdf(
         pdfHeight
       ) / 2;
 
-    /*
-      ADD IMAGE
-    */
-
     pdf.addImage(
-      imageData,
+      finalImage,
       "JPEG",
       x,
       y,
@@ -463,16 +533,57 @@ function resizeCertificatePdf(
     );
 
     /*
-      SAVE
+      OUTPUT PDF
     */
 
-    pdf.save(
-      fileName
+    const pdfBlob =
+      pdf.output(
+        "blob"
+      );
+
+    /*
+      DOWNLOAD
+    */
+
+    const blobUrl =
+      URL.createObjectURL(
+        pdfBlob
+      );
+
+    const link =
+      document.createElement(
+        "a"
+      );
+
+    link.href =
+      blobUrl;
+
+    link.download =
+      fileName;
+
+    document.body.appendChild(
+      link
+    );
+
+    link.click();
+
+    document.body.removeChild(
+      link
+    );
+
+    URL.revokeObjectURL(
+      blobUrl
     );
 
     /*
       INFO
     */
+
+    const finalKB =
+      Math.round(
+        pdfBlob.size /
+        1024
+      );
 
     const info =
       document.getElementById(
@@ -482,14 +593,17 @@ function resizeCertificatePdf(
     if (info) {
 
       info.innerHTML =
-        "PDF Generated";
+        `
+        PDF Generated<br>
+        Size:
+        ${finalKB} KB
+        `;
 
       info.style.display =
         "block";
     }
   };
 }
-
 
 
 
