@@ -149,14 +149,37 @@
                           <!-- Replace the image source with the demo man logo -->
                           <div class="demo-man-logo" id="demoManLogoPhoto">
                               <svg
-							  xmlns="http://www.w3.org/2000/svg"
-							  width="90"
-							  height="90"
-							  fill="currentColor"
-							  viewBox="0 0 24 24"
-							>
-							  <path d="M12 12c2.761 0 5-2.239 5-5s-2.239-5-5-5-5 2.239-5 5 2.239 5 5 5zm0 2c-3.314 0-10 1.657-10 5v3h20v-3c0-3.343-6.686-5-10-5z"/>
-							</svg>
+								  xmlns="http://www.w3.org/2000/svg"
+								  viewBox="0 0 640 640"
+								  width="120"
+								  height="120"
+								  fill="currentColor"
+								>
+								  <!-- Rounded Head -->
+								  <circle
+								    cx="320"
+								    cy="180"
+								    r="115"
+								  />
+								
+								  <!-- Same rounded FA-style body -->
+								  <path
+								    d="
+								      M210 350
+								      C150 350 100 400 100 470
+								      L100 520
+								
+								      C100 570 130 600 180 600
+								      L460 600
+								
+								      C510 600 540 570 540 520
+								      L540 470
+								
+								      C540 400 490 350 430 350
+								      Z
+								    "
+								  />
+								</svg>
                           </div>
                           <img class="pics" id="photoPreview" src="" alt="Chania">
                           <div class="text-center mt-2 bg-white" style="color: black; width: 175px; text-align: center;" id="photoInfo">
