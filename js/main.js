@@ -102,10 +102,6 @@ function processResize(
     fileName
   );
 
-    const sizeKB =
-      Math.round(
-        getSize(finalData) / 1024
-      );
 
     const info =
       document.getElementById(
@@ -480,36 +476,34 @@ function showCropperPopup(
   const reader =
     new FileReader();
 
-  reader.onload =
-    function (e) {
+  reader.onload = function (e) {
 
-    cropperImage.onload =
-  function () {
-
-    const popup =
-      document.getElementById(
-        popupId
-      );
-
-    popup.style.display =
-      "flex";
-
-    activeCropper =
-      new Cropper(
-        cropperImage,
-        {
-          aspectRatio: NaN,
-          viewMode: 1,
-          autoCropArea: 1,
-          responsive: true
-        }
-      );
+    cropperImage.onload = function () {
+  
+      const popup =
+        document.getElementById(
+          popupId
+        );
+  
+      popup.style.display =
+        "flex";
+  
+      activeCropper =
+        new Cropper(
+          cropperImage,
+          {
+            aspectRatio: NaN,
+            viewMode: 1,
+            autoCropArea: 1,
+            responsive: true
+          }
+        );
+    };
+  
+    cropperImage.src =
+      e.target.result;
   };
-
-cropperImage.src =
-  e.target.result;
-  };
-
+  
   reader.readAsDataURL(
     input.files[0]
   );
