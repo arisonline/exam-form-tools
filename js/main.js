@@ -1282,6 +1282,63 @@ function cropImage() {
   preview.style.display =
     "block";
 
+
+  /* =========================
+     AUTO IMAGE INFO
+  ========================= */
+  
+  const infoId =
+    activePreviewId
+      .replace(
+        "Preview",
+        "Info"
+      );
+  
+  const info =
+    document.getElementById(
+      infoId
+    );
+  
+  if (info) {
+  
+    /*
+      IMAGE SIZE
+    */
+  
+    const base64 =
+      dataUrl.split(",")[1];
+  
+    const bytes =
+      Math.round(
+        (base64.length * 3) / 4
+      );
+  
+    const sizeKB =
+      Math.round(
+        bytes / 1024
+      );
+  
+    /*
+      WIDTH HEIGHT
+    */
+  
+    info.innerHTML =
+      `
+      Width:
+      ${canvas.width}px<br>
+  
+      Height:
+      ${canvas.height}px<br>
+  
+      Size:
+      ${sizeKB} KB
+      `;
+  
+    info.style.display =
+      "block";
+  }
+  
+
   if (activeLogoId) {
 
     const logo =
