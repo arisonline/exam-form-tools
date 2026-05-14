@@ -2,4 +2,4 @@
 
 Do not copy my theme or any content.
 
-If you mant then send main to: contact@dozni.com
+If you mant then send A request mail to: contact@dozni.com
