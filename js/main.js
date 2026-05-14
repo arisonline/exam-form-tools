@@ -178,7 +178,11 @@ function processResize(
 
 
     canvas.width = width;
-    canvas.height = height;
+    canvas.height =
+      width === 350 &&
+      height === 550
+        ? 650
+        : height;
     
     const ctx =
       canvas.getContext("2d");
@@ -190,6 +194,97 @@ function processResize(
       canvas.width,
       canvas.height
     );
+
+
+
+    /* =========================
+       CDS PHOTO NAME + DATE
+    ========================= */
+    
+    const nameInput =
+      document.getElementById(
+        "candidateNamePhoto"
+      );
+    
+    const dateInput =
+      document.getElementById(
+        "photographDate"
+      );
+    
+    /*
+      ONLY FOR CDS SIZE
+    */
+    
+    if (
+      width === 350 &&
+      height === 550 &&
+      nameInput &&
+      dateInput
+    ) {
+    
+      /*
+        WHITE BOTTOM AREA
+      */
+    
+      ctx.fillStyle =
+        "#ffffff";
+    
+      ctx.fillRect(
+        0,
+        canvas.height - 110,
+        canvas.width,
+        110
+      );
+    
+      /*
+        NAME
+      */
+    
+      ctx.fillStyle =
+        "#000000";
+    
+      ctx.font =
+        "bold 24px Arial";
+    
+      ctx.textAlign =
+        "center";
+    
+      ctx.fillText(
+        "Name: " +
+        nameInput.value,
+        canvas.width / 2,
+        canvas.height - 60
+      );
+    
+      /*
+        DATE
+      */
+    
+      let formattedDate = "";
+    
+      if (dateInput.value) {
+    
+        const parts =
+          dateInput.value.split("-");
+    
+        formattedDate =
+          parts[2] +
+          "-" +
+          parts[1] +
+          "-" +
+          parts[0];
+      }
+    
+      ctx.font =
+        "bold 20px Arial";
+    
+      ctx.fillText(
+        "Photograph Date: " +
+        formattedDate,
+        canvas.width / 2,
+        canvas.height - 25
+      );
+    }
 
 
 
