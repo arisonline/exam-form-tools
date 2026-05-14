@@ -1468,3 +1468,42 @@ async function loadCropper() {
 
   cropperLoaded = true;
 }
+
+
+
+
+
+
+function changeForm() {
+
+  /*
+    DROPDOWN
+  */
+
+  const select =
+    document.getElementById(
+      "formDropdown"
+    );
+
+  if (!select)
+    return;
+
+  /*
+    VALUE
+  */
+
+  const value =
+    select.value
+    .trim()
+    .toLowerCase();
+
+  if (!value)
+    return;
+
+  /*
+    REDIRECT
+  */
+
+  window.location.href =
+    `/tools/${value}-photo-resizer.html`;
+}
