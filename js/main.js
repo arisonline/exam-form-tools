@@ -178,23 +178,60 @@ function processResize(
 
 
     canvas.width = width;
-    canvas.height =
-      width === 350 &&
-      height === 550
-        ? 650
-        : height;
+    canvas.height = height;
     
     const ctx =
       canvas.getContext("2d");
-
-    ctx.drawImage(
-      img,
-      0,
-      0,
-      canvas.width,
-      canvas.height
-    );
-
+    
+    /* =========================
+       CDS PHOTO SPECIAL LAYOUT
+    ========================= */
+    
+    if (
+      width === 350 &&
+      height === 550
+    ) {
+    
+      /*
+        PHOTO AREA
+      */
+    
+      ctx.drawImage(
+        img,
+        0,
+        0,
+        canvas.width,
+        440
+      );
+    
+      /*
+        WHITE INFO AREA
+      */
+    
+      ctx.fillStyle =
+        "#ffffff";
+    
+      ctx.fillRect(
+        0,
+        440,
+        canvas.width,
+        110
+      );
+    
+    } else {
+    
+      /*
+        NORMAL IMAGE
+      */
+    
+      ctx.drawImage(
+        img,
+        0,
+        0,
+        canvas.width,
+        canvas.height
+      );
+    }
 
 
     /* =========================
@@ -253,7 +290,7 @@ function processResize(
         "Name: " +
         nameInput.value,
         canvas.width / 2,
-        canvas.height - 60
+        485
       );
     
       /*
@@ -282,7 +319,7 @@ function processResize(
         "Photograph Date: " +
         formattedDate,
         canvas.width / 2,
-        canvas.height - 25
+        525
       );
     }
 
